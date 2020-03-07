@@ -32,6 +32,18 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
+      # カラム追加(not null制約,default値設定)
+      t.string :name,           null: false
+      t.integer :gender,        null: false
+      t.string :profile_image_id
+      t.date :birthday
+      t.text :introduction
+      t.integer :height
+      t.integer :goal_weight
+      t.boolean :is_deleted,    null: false, default: false
+      t.integer :public_status, null: false, default: 1
+      t.integer :rank_status,   null: false, default: 1
+      # カラム追加(not null制約)
 
       t.timestamps null: false
     end
