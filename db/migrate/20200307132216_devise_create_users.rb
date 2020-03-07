@@ -41,8 +41,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :height
       t.integer :goal_weight
       t.boolean :is_deleted,    null: false, default: false
-      t.integer :public_status, null: false, default: 1
-      t.integer :rank_status,   null: false, default: 1
+      t.integer :public_status, null: false, default: 0
+      t.integer :rank_status,   null: false, default: 0
       # カラム追加(not null制約)
 
       t.timestamps null: false
