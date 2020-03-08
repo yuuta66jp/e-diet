@@ -5,8 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # enum機能の定義
-  enum gender:        { other: 0, man: 1, woman: 2 }
-  enum public_status: { open: 0, closed: 1 }
-  enum rank_status:   { green: 0, silver: 1, gold: 2 }
+  enum gender:        { 男性: 0, 女性: 1, その他: 2 }
+  enum public_status: { 公開: 0, 非公開: 1 }
+  enum rank_status:   { グリーン: 0, シルバー: 1, ゴールド: 2 }
+
+  # バリデーション設定
+  validates :name,   presence: true, length: { maximum: 15 }
+  validates :gender, presence: true
+
 
 end

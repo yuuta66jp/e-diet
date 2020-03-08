@@ -5,18 +5,47 @@
 
   <!-- 追加項目 -->
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :ユーザー名 %><br>
     <%= f.text_field :name, autofocus:true, autocomplete: "name" %>
   </div>
 
-
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.label :性別 %><br>
+    <%= f.select :gender, User.genders.keys.to_a, prompt: "選択してください" %>
+  </div>
+
+  <div>
+    <%= f.label :生年月日 %><br>
+    <!-- use_month_numbers（月の表示を数字で表示） -->
+    <%= f.date_select :birthday, start_year: 1930, end_year: Time.current.year, prompt: "--", use_month_numbers: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :身長 %><br>
+    <%= f.number_field :height, min: 0 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :目標体重 %><br>
+    <%= f.number_field :goal_weight, min: 0 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :公開ステータス %><br>
+    <%= f.label :公開ステータス, :公開 %>
+    <%= f.radio_button :public_status, "公開", checked: true %>
+    <%= f.label :公開ステータス, :非公開 %>
+    <%= f.radio_button :public_status, "非公開" %>
+  </div>
+  <!-- 追加項目 -->
+
+  <div class="field">
+    <%= f.label :メールアドレス %><br />
+    <%= f.email_field :email, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :パスワード %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -24,7 +53,7 @@
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :パスワード確認 %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
