@@ -5,6 +5,11 @@
   <h3>メモ</h3>
   <%= f.text_area :remark %>
 
+  <%= f.fields_for @body_weight do |weight| %>
+  <h3>体重</h3>
+  <%= weight.number_field :weight_record, min: 0 %>
+  <% end %>
+
   <h3>活動量</h3>
   <%= f.select :activity_status, Diary.activity_statuses.keys.to_a, prompt: "選択してください" %>
 

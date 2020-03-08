@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       # t.datetime :locked_at
 
       # カラム追加(not null制約,default値設定)
-      t.string  :name,           null: false
+      t.string  :name,          null: false
       t.integer :gender,        null: false
       t.string  :profile_image_id
       t.date    :birthday

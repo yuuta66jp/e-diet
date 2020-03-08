@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_08_040140) do
+ActiveRecord::Schema.define(version: 2020_03_08_151225) do
+
+  create_table "body_weights", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "diary_id", null: false
+    t.integer "weight_record", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_body_weights_on_diary_id"
+    t.index ["user_id"], name: "index_body_weights_on_user_id"
+  end
 
   create_table "diaries", force: :cascade do |t|
     t.integer "user_id", null: false

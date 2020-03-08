@@ -5,7 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # アソシエーション設定
-  has_many :diaries, dependent: :destroy
+  has_many :diaries,      dependent: :destroy
+  has_many :body_weights, dependent: :destroy
 
   # enum機能の定義
   enum gender:        { 男性: 0, 女性: 1, その他: 2 }
@@ -15,6 +16,5 @@ class User < ApplicationRecord
   # バリデーション設定
   validates :name,   presence: true, length: { maximum: 15 }
   validates :gender, presence: true
-
 
 end
