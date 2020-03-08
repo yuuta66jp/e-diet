@@ -8,7 +8,7 @@ class DiariesController < ApplicationController
     # build=モデルオブジェクトを生成(newの別名)
     @diary = current_user.diaries.build(diary_params)
     @diary.save
-    redirect_to root_path
+    redirect_to diary_path(@diary.id)
   end
 
   def index
@@ -16,6 +16,7 @@ class DiariesController < ApplicationController
   end
 
   def show
+    @diary = Diary.find(params[:id])
   end
 
   def edit

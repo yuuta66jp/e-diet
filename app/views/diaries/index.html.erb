@@ -1,1 +1,11 @@
 <h1>index</h1>
+
+<% @diaries.each do |diary| %>
+  <p>メモ</p>
+  <!-- (diary)でeach文のdiaryオブジェクトを指定 -->
+  <span><%= link_to diary.remark, diary_path(diary) %></span>
+
+  <p>活動量</p>
+  <span><%= diary.activity_status %></span>
+
+<% end %>
