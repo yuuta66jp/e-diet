@@ -1,0 +1,14 @@
+<h1>新規投稿</h1>
+
+<%= form_with model: @diary do |f| %>
+
+  <h3>メモ</h3>
+  <%= f.text_area :remark %>
+
+  <h3>活動量</h3>
+  <%= f.select :activity_status, Diary.activity_statuses.keys.to_a, prompt: "選択してください" %>
+
+  <%= f.submit "投稿" %>
+
+<% end %>
+
