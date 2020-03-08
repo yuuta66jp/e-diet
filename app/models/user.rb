@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # アソシエーション設定
+  has_many :diaries, dependent: :destroy
+
   # enum機能の定義
   enum gender:        { 男性: 0, 女性: 1, その他: 2 }
   enum public_status: { 公開: 0, 非公開: 1 }
