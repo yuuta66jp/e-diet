@@ -1,8 +1,9 @@
 class DiariesController < ApplicationController
 
   def new
+    # viewへ渡すためのインスタンス変数に空のモデルオブジェクトを作成
     @diary = Diary.new
-    @body_weight = @diary.build_body_weight
+    @body_weight = BodyWeight.new
   end
 
   def create
@@ -10,6 +11,7 @@ class DiariesController < ApplicationController
     @diary = current_user.diaries.build(diary_params)
     @diary.save
 
+    # body_weight作成
     @body_weight = @diary.build_body_weight(
       user_id: current_user.id,
       weight_record: params[:diary][:body_weight][:weight_record]
