@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # attachmentメソッド（gem:refile)使用
+  attachment :profile_image
+
   # アソシエーション設定
   has_many :diaries,      dependent: :destroy
   has_many :body_weights, dependent: :destroy
