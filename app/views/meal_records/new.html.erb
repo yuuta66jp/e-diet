@@ -1,7 +1,8 @@
 <h1>新規投稿</h1>
 
 <%= form_with model: @meal_record, url: meal_records_path do |f| %>
-
+  <!-- hidden_fieldにてdiary_idを渡す -->
+  <%= f.hidden_field :diary_id, value: @diary.id %>
 
   <h3>食事画像</h3>
   <%= f.attachment_field :meal_image %>
