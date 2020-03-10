@@ -18,6 +18,8 @@ class MealRecordsController < ApplicationController
     redirect_to edit_diary_path(id: @diary_id)
   end
 
+  def edit
+
   private
   def meal_record_params
     params.require(:meal_record).permit(:diary_id, :title, :body, :meal_image, :intake_status)

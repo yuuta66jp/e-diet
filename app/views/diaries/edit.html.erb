@@ -1,4 +1,13 @@
 <h1>edit</h1>
+<h2>食事記録</h2>
+<% @meal_records.each do |meal| %>
+  <p><%= meal.intake_status %></p>
+  <h4>タイトル</h4>
+    <p><%= meal.title %></p>
+  <h4>内容</h4>
+    <p><%= meal.body %></p>
+<%= link_to "編集", edit_meal_record_path(meal) %>
+<% end %>
 
 <%= form_with model: @diary do |f| %>
 

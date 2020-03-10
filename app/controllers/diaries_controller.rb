@@ -15,7 +15,7 @@ class DiariesController < ApplicationController
     @body_weight = @diary.build_body_weight(
       user_id: current_user.id,
       weight_record: params[:diary][:body_weight][:weight_record]
-    )
+      )
     @body_weight.save
 
     # パラメーターをredirect_toに直接渡す
@@ -29,10 +29,13 @@ class DiariesController < ApplicationController
 
   def show
     @diary = Diary.find(params[:id])
+    # @diaryに紐づいたmeal_recordsを取得
+    @meal_records = @diary.meal_records
   end
 
   def edit
     @diary = Diary.find(params[:id])
+    @meal_records = @diary.meal_records
     # find_byメソッドによりdairy_idより取得
     @body_weight = BodyWeight.find_by(diary_id: params[:id])
   end
@@ -44,7 +47,7 @@ class DiariesController < ApplicationController
     @body_weight = BodyWeight.find_by(diary_id: params[:id])
     @body_weight.update(
       weight_record: params[:diary][:body_weight][:weight_record]
-    )
+      )
 
     redirect_to diary_path(@diary.id)
 
