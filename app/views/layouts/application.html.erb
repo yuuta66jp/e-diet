@@ -11,22 +11,29 @@
 
   <body>
     <!--ヘッダーの記述-->
-    <header>
+  <header class="navbar navbar-fixed-top navbar-dark bg-primary mb-2">
+    <div class="container">
+
+      <nav class="nav navbar-nav navbar-left">
+<a class="navbar-brand" href="#">e-diet</a>
+      </nav>
       <nav>
-        <ul>
-          <!-- if文でサインインとサインアウトじの表示を変更 -->
-          <% if user_signed_in? %>
-          <li><%= current_user.name %></li>
-          <li><%= link_to "users", users_path %></li>
-          <li><%= link_to "diaries", diaries_path %></li>
-          <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-          <% else %>
-          <li><%= link_to "signup", new_user_registration_path %></li>
-          <li><%= link_to "login", new_user_session_path %></li>
-          <% end %>
+        <ul class="nav navbar-nav navbar-right">
+            <!-- if文でサインインとサインアウトじの表示を変更 -->
+            <% if user_signed_in? %>
+            <li><%= link_to current_user.name, user_path(current_user) %></li>
+            <li><%= link_to "users", users_path %></li>
+            <li><%= link_to "diaries", diaries_path %></li>
+            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+            <% else %>
+            <li class= "nav-item"><%= link_to "signup", new_user_registration_path %></li>
+            <li class= "nav-item"><%= link_to "login", new_user_session_path %></li>
+            <% end %>
         </ul>
       </nav>
-    </header>
+
+    </div>
+  </header>
     <!--ヘッダーの記述-->
     <%= yield %>
   </body>
