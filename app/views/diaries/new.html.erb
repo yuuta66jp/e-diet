@@ -13,6 +13,9 @@
   <h3>活動量</h3>
   <%= f.select :activity_status, Diary.activity_statuses.keys.to_a, prompt: "選択してください" %>
 
+  <h3>タグ</h3>
+  <%= f.text_field :tag_list, value: @diary.tag_list.join(',') %>
+
   <%= f.submit "食事記録を作成する" %>
 
 <% end %>

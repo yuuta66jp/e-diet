@@ -10,4 +10,7 @@
   <p>活動量</p>
   <span><%= diary.activity_status %></span>
 
+  <p>タグ</p>
+  <%= render "diaries/tag_list", tag_list: diary.tag_list %>
+
 <% end %>

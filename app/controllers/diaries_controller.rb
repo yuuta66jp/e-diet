@@ -62,7 +62,7 @@ class DiariesController < ApplicationController
 
   private
   def diary_params
-    params.require(:diary).permit(:user_id, :remark, :activity_status)
+    params.require(:diary).permit(:user_id, :remark, :activity_status, :tag_list)
   end
 
 end
