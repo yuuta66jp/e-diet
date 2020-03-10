@@ -9,6 +9,8 @@
 <%= link_to "編集", edit_meal_record_path(meal) %>
 <% end %>
 
+<%= link_to "追加する", new_meal_record_path(id: @diary.id) %>
+
 <%= form_with model: @diary do |f| %>
 
   <h3>メモ</h3>
