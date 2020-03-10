@@ -7,6 +7,7 @@
   <h4>内容</h4>
     <p><%= meal.body %></p>
 <%= link_to "編集", edit_meal_record_path(meal) %>
+<%= link_to "削除", meal_record_path(meal), method: :delete %>
 <% end %>
 
 <%= link_to "追加する", new_meal_record_path(id: @diary.id) %>

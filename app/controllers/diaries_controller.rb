@@ -54,6 +54,10 @@ class DiariesController < ApplicationController
   end
 
   def destroy
+    @diary = Diary.find(params[:id])
+    @diary.destroy
+    # destroyで日記一覧画面へ遷移
+    redirect_to diaries_path
   end
 
   private

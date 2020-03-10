@@ -26,6 +26,13 @@ class MealRecordsController < ApplicationController
     redirect_to edit_diary_path(@meal_record.diary_id)
   end
 
+  def destroy
+    @meal_record =MealRecord.find(params[:id])
+    @meal_record.destroy
+    # destroyで日記編集画面へ遷移
+    redirect_to edit_diary_path(@meal_record.diary_id)
+  end
+
   private
   def meal_record_params
     params.require(:meal_record).permit(:diary_id, :title, :body, :meal_image, :intake_status)
