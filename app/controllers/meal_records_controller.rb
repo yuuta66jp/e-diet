@@ -4,17 +4,14 @@ class MealRecordsController < ApplicationController
     @meal_record = MealRecord.new
     @diary = Diary.find(params[:id])
 
-
   end
 
   def create
-
     @meal_record = MealRecord.new(meal_record_params)
-
     @meal_record.save
-
     # diary_idの取得
     @diary_id = params[:meal_record][:diary_id]
+    # createで日記編集画面へ遷移
     redirect_to edit_diary_path(id: @diary_id)
   end
 
@@ -25,7 +22,7 @@ class MealRecordsController < ApplicationController
   def update
     @meal_record =MealRecord.find(params[:id])
     @meal_record.update(meal_record_params)
-
+    # updateで日記編集画面へ遷移
     redirect_to edit_diary_path(@meal_record.diary_id)
   end
 

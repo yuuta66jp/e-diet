@@ -18,7 +18,7 @@ class DiariesController < ApplicationController
       )
     @body_weight.save
 
-    # パラメーターをredirect_toに直接渡す
+    # createで新規食事記録画面へ遷移（パラメーターをredirect_toに直接渡す）
     redirect_to new_meal_record_path(id: @diary.id)
 
   end
