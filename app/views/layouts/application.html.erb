@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>EDiet</title>
+    <title>e-diet</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <header>
+      <nav>
+        <ul>
+          <!-- if文でサインインとサインアウトじの表示を変更 -->
+          <% if user_signed_in? %>
+          <li><%= user.name %></li>
+          <li></li>
+          <li></li>
+          <li></li>
+
+    </header>
     <%= yield %>
   </body>
 </html>
