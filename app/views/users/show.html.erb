@@ -1,4 +1,7 @@
 <h1>show</h1>
+<!-- チャート表示 -->
+<%= line_chart @data %>
+
 
 <h4>ユーザー名</h4>
   <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>

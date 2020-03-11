@@ -74,3 +74,4 @@ gem 'jquery-rails'
 gem 'acts-as-taggable-on', '~> 6.0'
 
 gem "chartkick"
+gem 'groupdate'

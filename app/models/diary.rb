@@ -12,4 +12,6 @@ class Diary < ApplicationRecord
   # acts_as_taggable_on :tagsと同じ意味（エイリアス）
   acts_as_taggable
 
+
+
   end
