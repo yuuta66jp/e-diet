@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'diaries#index'
 
   resources :users,        except: [:new, :create]
+  get       'congfirm' => 'users#congfirm'
 
   resources :diaries
 

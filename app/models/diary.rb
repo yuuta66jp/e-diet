@@ -2,7 +2,7 @@ class Diary < ApplicationRecord
 
   # アソシエーション設定
   belongs_to :user
-  has_one    :body_weight
+  has_one    :body_weight,  dependent: :destroy
   has_many   :meal_records, dependent: :destroy
 
   # enum機能の定義
