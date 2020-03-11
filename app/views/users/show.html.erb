@@ -8,5 +8,9 @@
 <h4>目標体重</h4>
   <p><%= @user.goal_weight %>Kg</p>
 <h4>日記投稿数</h4>
-<p><%= link_to @user.diaries.count, diaries_path %>件</p>
+  <p><%= link_to @user.diaries.count, diaries_path %>件</p>
+
+<% if @user.id == current_user.id %>
+  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+<% end %>
 
