@@ -2,6 +2,10 @@
 
 <%= form_with model: @diary do |f| %>
 
+  <h3>日付</h3>
+  <%= f.date_field :created_on %>
+
+
   <h3>メモ</h3>
   <%= f.text_area :remark %>
 
