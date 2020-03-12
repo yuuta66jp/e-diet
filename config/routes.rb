@@ -5,15 +5,14 @@ Rails.application.routes.draw do
   root 'diaries#index'
 
   namespace :admins do
-    resources :users
-    resources :diaries
+    resources :users, except: [:new, :create]
+    resources :diaries, only: [:index, :show, :destroy]
   end
 
-  resources :users,        except: [:new, :create]
+  resources :users, except: [:new, :create]
   get       'congfirm' => 'users#congfirm'
 
   resources :diaries
   resources :meal_records, except: [:index, :show]
-
 
 end

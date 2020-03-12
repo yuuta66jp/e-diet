@@ -1,0 +1,17 @@
+<h1>show</h1>
+
+<h4>ユーザー名</h4>
+  <%= attachment_image_tag @user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>
+  <p><%= @user.name %></p>
+<h4>ランク</h4>
+  <p><%= @user.rank_status %></p>
+<h4>目標体重</h4>
+  <p><%= @user.goal_weight %>Kg</p>
+<h4>日記投稿数</h4>
+  <p><%= link_to @user.diaries.count, diaries_path %>件</p>
+
+  <p><%= link_to "プロフィール編集", edit_admins_user_path(@user) %></p>
+
+  <p><%= link_to "退会する", admins_user_path(@user), method: :delete %></p>
+
+
