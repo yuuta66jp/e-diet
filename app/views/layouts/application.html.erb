@@ -29,8 +29,8 @@
           <!-- admin -->
           <% elsif admin_signed_in? %>
             <li>管理者</li>
-            <li><%= link_to "users", users_path %></li>
-            <li><%= link_to "diaries", diaries_path %></li>
+            <li><%= link_to "users", admins_users_path %></li>
+            <li><%= link_to "diaries", admins_diaries_path %></li>
             <li><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
           <!-- gest -->
           <% else %>
