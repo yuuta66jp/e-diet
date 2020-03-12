@@ -1,2 +1,21 @@
 class Admins::DiariesController < ApplicationController
+  # adminにのみアクセスを許可する(deviseのメッソド)
+  before_action :authenticate_admin!
+
+  def index
+    @diaries = Diary.all
+  end
+
+  def show
+    @diary = Diary.find(params[:id])
+    # @diaryに紐づいたmeal_recordsを取得
+    @meal_records = @diary.meal_records
+  end
+
+  def destroy
+    @diary = Diary.find(params[:id])
+    @diary.destroy
+    redirect_to admins_diaries_path
+  end
+
 end

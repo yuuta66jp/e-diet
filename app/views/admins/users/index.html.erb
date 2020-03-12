@@ -3,8 +3,8 @@
 <% @users.each do |user| %>
   <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>
   <h4>ユーザー名</h4>
-  <p><%= user.name %></p>
+    <p><%= user.name %></p>
   <h4>ランク</h4>
-  <p><%= user.rank_status %></p>
-  <p><%= link_to "show", admins_user_path(user) %></p>
+    <p><%= user.rank_status %></p>
+    <p><%= link_to "show", admins_user_path(user) %></p>
 <% end %>
