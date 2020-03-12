@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get       'congfirm' => 'users#congfirm'
 
   resources :diaries
-
   resources :meal_records, except: [:index, :show]
 
 

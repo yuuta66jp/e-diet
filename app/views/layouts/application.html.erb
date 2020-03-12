@@ -1,40 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>e-diet</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>e-diet</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <!--ヘッダーの記述-->
+<body>
+  <!--ヘッダーの記述-->
   <header class="navbar navbar-fixed-top navbar-dark bg-primary mb-2">
     <div class="container">
 
       <nav class="nav navbar-nav navbar-left">
-<a class="navbar-brand" href="#">e-diet</a>
+        <a class="navbar-brand" href="#">e-diet</a>
       </nav>
       <nav>
         <ul class="nav navbar-nav navbar-right">
-            <!-- if文でサインインとサインアウトじの表示を変更 -->
-            <% if user_signed_in? %>
+          <!-- if文でuser,admin,gestuser時の表示を分岐 -->
+          <!-- user -->
+          <% if user_signed_in? %>
             <li><%= link_to current_user.name, user_path(current_user) %></li>
             <li><%= link_to "users", users_path %></li>
             <li><%= link_to "diaries", diaries_path %></li>
             <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-            <% else %>
+          <!-- admin -->
+          <% elsif admin_signed_in? %>
+            <li>管理者</li>
+            <li><%= link_to "users", users_path %></li>
+            <li><%= link_to "diaries", diaries_path %></li>
+            <li><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
+          <!-- gest -->
+          <% else %>
             <li class= "nav-item"><%= link_to "signup", new_user_registration_path %></li>
             <li class= "nav-item"><%= link_to "login", new_user_session_path %></li>
-            <% end %>
+          <% end %>
         </ul>
       </nav>
 
     </div>
   </header>
-    <!--ヘッダーの記述-->
-    <%= yield %>
-  </body>
+  <!--ヘッダーの記述-->
+  <%= yield %>
+</body>
 </html>
