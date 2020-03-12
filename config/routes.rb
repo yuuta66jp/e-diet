@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'diaries#index'
 
+  namespace :admins do
+    resources :users
+    resources :diaries
+  end
+
   resources :users,        except: [:new, :create]
   get       'congfirm' => 'users#congfirm'
 
