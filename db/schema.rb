@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_004001) do
+ActiveRecord::Schema.define(version: 2020_03_12_054002) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 2020_03_12_004001) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["diary_id"], name: "index_meal_records_on_diary_id"
+  end
+
+  create_table "rewards", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "point", null: false
+    t.integer "issue_reason", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_rewards_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|

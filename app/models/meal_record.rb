@@ -1,5 +1,4 @@
 class MealRecord < ApplicationRecord
-
   # アソシエーション設定
   belongs_to :diary
 

@@ -1,5 +1,4 @@
 class Diary < ApplicationRecord
-
   # アソシエーション設定
   belongs_to :user
   has_one    :body_weight,  dependent: :destroy
@@ -11,7 +10,5 @@ class Diary < ApplicationRecord
   # タグ機能
   # acts_as_taggable_on :tagsと同じ意味（エイリアス）
   acts_as_taggable
-
-
 
   end

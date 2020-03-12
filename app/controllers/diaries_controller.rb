@@ -8,9 +8,18 @@ class DiariesController < ApplicationController
 
   def create
     # build=モデルオブジェクトを生成(newの別名)
+    # 1対Nの際、buildによる関連付けメソッド(関連付けメソッド名.build)を使用
     @diary = current_user.diaries.build(diary_params)
     @diary.save
+    # reward作成（日記投稿）
+    @point = current_user.rewards.build(
+      user_id:      current_user.id,
+      point:        10,
+      issue_reason: 1
+      )
+    @point.save
     # body_weight作成
+    # 1対１の際、buildによる関連付けメソッド(build_関連付けメソッド名)を使用
     @body_weight = @diary.build_body_weight(
       user_id:       current_user.id,
       weight_record: params[:diary][:body_weight][:weight_record]
