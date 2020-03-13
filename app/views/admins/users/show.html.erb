@@ -12,4 +12,6 @@
 
     <p><%= link_to "プロフィール編集", edit_admins_user_path(@user) %></p>
 
+    <p><%= link_to "ポイント取得一覧", admins_rewards_path(id: @user, index: "user") %></p>
+
     <p><%= link_to "退会する", admins_user_path(@user), method: :delete %></p>

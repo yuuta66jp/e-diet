@@ -1,0 +1,10 @@
+<h3>ポイント取得一覧</h3>
+
+<% @rewards.each do |reward| %>
+
+  <p><%= reward.created_at %></p>
+  <p><%= reward.user.name %></p>
+  <p><%= reward.point %>ポイント</p>
+  <p><%= reward.issue_reason %></p>
+
+<% end %>

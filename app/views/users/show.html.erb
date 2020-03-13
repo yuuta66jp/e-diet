@@ -16,6 +16,8 @@
 <% if @user.id == current_user.id %>
   <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
 
+  <p><%= link_to "ポイント取得一覧", rewards_path %></p>
+
   <p><%= link_to "退会する", congfirm_path %></p>
 <% end %>
 

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   namespace :admins do
     resources :users, except: [:new, :create]
     resources :diaries, only: [:index, :show, :destroy]
+    resources :rewards, only: [:index, :destroy]
   end
 
   resources :users, except: [:new, :create]
@@ -18,5 +19,6 @@ Rails.application.routes.draw do
 
   resources :diaries
   resources :meal_records, except: [:index, :show]
+  resources :rewards,        only: :index
 
 end

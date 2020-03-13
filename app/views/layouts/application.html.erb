@@ -31,6 +31,7 @@
             <li>管理者</li>
             <li><%= link_to "users", admins_users_path %></li>
             <li><%= link_to "diaries", admins_diaries_path %></li>
+            <li><%= link_to "ポイント取得一覧", admins_rewards_path(index: "all") %></li>
             <li><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
           <!-- gest -->
           <% else %>
