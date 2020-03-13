@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_054002) do
+ActiveRecord::Schema.define(version: 2020_03_13_121944) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -43,6 +43,13 @@ ActiveRecord::Schema.define(version: 2020_03_12_054002) do
     t.datetime "updated_at", null: false
     t.date "created_on"
     t.index ["user_id"], name: "index_diaries_on_user_id"
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name", null: false
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "meal_records", force: :cascade do |t|
