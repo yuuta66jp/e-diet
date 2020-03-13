@@ -3,6 +3,6 @@ class Reward < ApplicationRecord
   belongs_to :user
 
   # enum機能の定義
-  enum issue_reason: { 新規登録: 0, 日記投稿:1, コメント: 2, フォロー: 3, 目標達成:4 }
+  enum issue_reason: { 新規登録: 0, ログイン: 1, 日記投稿:2, コメント: 3, フォロー: 4, 目標達成:5 }
 
 end

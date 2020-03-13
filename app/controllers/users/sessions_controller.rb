@@ -9,9 +9,23 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+   def create
+     super
+     # sign_in時のポイント機能(１日1回付与)(UTC時刻を基準にしているため時差分-9時間調整)
+     time0 = Time.current.midnight.advance(hours: -9)
+     time1 = Time.current.end_of_day.advance(hours: -9)
+     # 同じハッシュ内に複数並べ条件を追加
+     unless current_user.rewards.where(issue_reason: 1, created_at: time0..time1).exists?
+
+       @point = current_user.rewards.build(
+         user_id:      current_user.id,
+         point:        20,
+         issue_reason: 1
+         )
+       @point.save
+
+     end
+   end
 
   # DELETE /resource/sign_out
   # def destroy

@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :admins
   # deviseコントローラーのカスタマイズ(新規登録時のpoint作成のため)
   devise_for :users, :controllers => {
-    :registrations => 'users/registrations'
+    :registrations => 'users/registrations',
+    :sessions      => 'users/sessions'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'diaries#index'
