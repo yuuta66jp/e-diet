@@ -17,12 +17,12 @@ class Users::SessionsController < Devise::SessionsController
      # 同じハッシュ内に複数並べ条件を追加
      unless current_user.rewards.where(issue_reason: 1, created_at: time0..time1).exists?
 
-       @point = current_user.rewards.build(
+       @sign_in_point = current_user.rewards.build(
          user_id:      current_user.id,
          point:        20,
          issue_reason: 1
          )
-       @point.save
+       @sign_in_point.save
 
      end
    end

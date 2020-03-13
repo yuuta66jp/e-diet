@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admins
-  # deviseコントローラーのカスタマイズ(新規登録時のpoint作成のため)
+  # deviseコントローラーのカスタマイズ(sign_up,sign_in時のpoint作成のため)
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions      => 'users/sessions'

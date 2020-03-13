@@ -11,13 +11,13 @@ class DiariesController < ApplicationController
     # 1対Nの際、buildによる関連付けメソッド(関連付けメソッド名.build)を使用
     @diary = current_user.diaries.build(diary_params)
     @diary.save
-    # reward作成（日記投稿）
-    @point = current_user.rewards.build(
+    # 日記作成ポイント付与
+    @diary_point = current_user.rewards.build(
       user_id:      current_user.id,
       point:        10,
-      issue_reason: 1
+      issue_reason: 2
       )
-    @point.save
+    @diary_point.save
     # body_weight作成
     # 1対１の際、buildによる関連付けメソッド(build_関連付けメソッド名)を使用
     @body_weight = @diary.build_body_weight(
@@ -25,6 +25,17 @@ class DiariesController < ApplicationController
       weight_record: params[:diary][:body_weight][:weight_record]
       )
     @body_weight.save
+    # 目標体重達成ポイント付与
+    @weight_record = @body_weight.weight_record
+    @goal_weight = current_user.goal_weight
+    if @weight_record <= @goal_weight
+      @achieve_point = current_user.rewards.build(
+      user_id:      current_user.id,
+      point:        100,
+      issue_reason: 5
+      )
+    @achieve_point.save
+    end
     # createで新規食事記録画面へ遷移（パラメーターをredirect_toに直接渡す）
     redirect_to new_meal_record_path(id: @diary.id)
   end
