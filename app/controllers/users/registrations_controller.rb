@@ -14,7 +14,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
      super
      # sign_up時のポイント機能
      @sign_up_point = current_user.rewards.build(
-       user_id:      current_user.id,
        point:        50,
        issue_reason: 0
        )

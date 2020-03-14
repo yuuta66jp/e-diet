@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     resources :users, except: [:new, :create]
     resources :diaries, only: [:index, :show, :destroy]
     resources :rewards, only: [:index, :destroy]
+    resources :genres,  only: [:index, :create, :edit, :update]
+    resources :topics
   end
 
   resources :users, except: [:new, :create]
@@ -20,5 +22,6 @@ Rails.application.routes.draw do
   resources :diaries
   resources :meal_records, except: [:index, :show]
   resources :rewards,        only: :index
+  resources :topics,         only: [:index, :show]
 
 end

@@ -13,7 +13,6 @@ class DiariesController < ApplicationController
     @diary.save
     # 日記作成ポイント付与
     @diary_point = current_user.rewards.build(
-      user_id:      current_user.id,
       point:        10,
       issue_reason: 2
       )
@@ -26,15 +25,12 @@ class DiariesController < ApplicationController
       )
     @body_weight.save
     # 目標体重達成ポイント付与
-    @weight_record = @body_weight.weight_record
-    @goal_weight = current_user.goal_weight
-    if @weight_record <= @goal_weight
+    if @body_weight.weight_record <= current_user.goal_weight
       @achieve_point = current_user.rewards.build(
-      user_id:      current_user.id,
       point:        100,
       issue_reason: 5
       )
-    @achieve_point.save
+      @achieve_point.save
     end
     # createで新規食事記録画面へ遷移（パラメーターをredirect_toに直接渡す）
     redirect_to new_meal_record_path(id: @diary.id)

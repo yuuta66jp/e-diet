@@ -1,0 +1,17 @@
+<h2>ジャンル一覧画面</h2>
+
+<%= form_with model: @genre, url: admins_genres_path do |f| %>
+  <span>ジャンル
+    <%= f.text_field :name %>
+    <label><%= f.radio_button :is_active, "true" %>有効</label>
+    <label><%= f.radio_button :is_active, "false" %>無効</label>
+    <%= f.submit "追加" %>
+  </span>
+<% end %>
+
+<% @genres.each do |genre| %>
+  <p>ジャンル名<p>
+    <%= genre.name %>
+  <p><%= genre.is_active ? "有効" : "無効" %>
+  <%= link_to "編集", edit_admins_genre_path(genre) %>
+<% end %>

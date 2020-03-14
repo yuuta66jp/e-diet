@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_121944) do
+ActiveRecord::Schema.define(version: 2020_03_13_122927) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -97,6 +97,16 @@ ActiveRecord::Schema.define(version: 2020_03_13_121944) do
     t.datetime "updated_at"
     t.integer "taggings_count", default: 0
     t.index ["name"], name: "index_tags_on_name", unique: true
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.integer "genre_id", null: false
+    t.string "title", null: false
+    t.text "body", null: false
+    t.string "topic_image_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["genre_id"], name: "index_topics_on_genre_id"
   end
 
   create_table "users", force: :cascade do |t|
