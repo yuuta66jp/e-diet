@@ -1,6 +1,6 @@
 <h3>ジャンル編集画面</h3>
 
-<%= form_with model: @genre, url: admins_genre_path do |f| %>
+<%= form_with model: @genre, url: admins_genre_path, local: true do |f| %>
   <span>ジャンル
     <%= f.text_field :name %>
     <label><%=f.radio_button :is_active, "true"%>有効</label>

@@ -1,0 +1,14 @@
+<h2>トピックス一覧</h2>
+
+  <%= link_to "新規作成", new_admins_topic_path %>
+
+<% @topics.each do |topic| %>
+  <h4>タイトル</h4>
+  <%= link_to topic.title,  admins_topic_path(topic) %>
+  <h4>内容</h4>
+  <%= topic.body %>
+  <h4>ジャンル名</h4>
+  <%= topic.genre.name %>
+  <%= link_to "編集", edit_admins_topic_path(topic) %>
+
+<% end %>

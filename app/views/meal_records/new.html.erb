@@ -1,6 +1,6 @@
 <h1>新規投稿</h1>
 
-<%= form_with model: @meal_record, url: meal_records_path do |f| %>
+<%= form_with model: @meal_record, url: meal_records_path, local: true do |f| %>
   <!-- hidden_fieldにてdiary_idを渡す -->
   <%= f.hidden_field :diary_id, value: @diary.id %>
 

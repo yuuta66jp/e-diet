@@ -12,7 +12,7 @@
 
 <%= link_to "追加する", new_meal_record_path(id: @diary.id) %>
 
-<%= form_with model: @diary do |f| %>
+<%= form_with model: @diary, local: true do |f| %>
 
   <h3>メモ</h3>
   <%= f.text_area :remark %>

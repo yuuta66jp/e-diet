@@ -1,6 +1,6 @@
 <h2>ジャンル一覧画面</h2>
 
-<%= form_with model: @genre, url: admins_genres_path do |f| %>
+<%= form_with model: @genre, url: admins_genres_path, local: true do |f| %>
   <span>ジャンル
     <%= f.text_field :name %>
     <label><%= f.radio_button :is_active, "true" %>有効</label>
