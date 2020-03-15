@@ -1,5 +1,8 @@
-<h1>ユーザー一覧</h1>
-
+<% if params[:index] == "follower" %>
+  <h1>Follower Users</h1>
+<% else %>
+  <h1>Follow Users</h1>
+<% end %>
 <% @users.each do |user| %>
   <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>
   <h4>ユーザー名</h4>

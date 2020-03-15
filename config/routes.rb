@@ -16,8 +16,12 @@ Rails.application.routes.draw do
     resources :genres,  only: [:index, :create, :edit, :update]
     resources :topics
   end
-
-  resources :users, except: [:new, :create]
+  # ルーティングをネストする
+  resources :users, except: [:new, :create] do
+    resource :relationships, only: [:create, :destroy]
+    # 自user以外のidが必要なためresourcesによって作成
+    resources :relationships, only: [:index]
+  end
   get       'congfirm' => 'users#congfirm'
 
   # ルーティングをネストする
