@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_122927) do
+ActiveRecord::Schema.define(version: 2020_03_15_020349) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2020_03_13_122927) do
     t.datetime "updated_at", null: false
     t.date "created_on"
     t.index ["user_id"], name: "index_diaries_on_user_id"
+  end
+
+  create_table "diary_comments", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "diary_id", null: false
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["diary_id"], name: "index_diary_comments_on_diary_id"
+    t.index ["user_id"], name: "index_diary_comments_on_user_id"
   end
 
   create_table "genres", force: :cascade do |t|
