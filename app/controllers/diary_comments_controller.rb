@@ -5,7 +5,7 @@ class DiaryCommentsController < ApplicationController
     @comment = @diary.diary_comments.build(diary_comment_params)
     @comment.user_id = current_user.id
     if @comment.save
-      reder :index
+      render :index
     end
   end
 
@@ -32,7 +32,7 @@ class DiaryCommentsController < ApplicationController
   private
 
   def diary_comment_params
-    params.require(:diary_comment).permit(:diary_id, :content)
+    params.require(:diary_comment).permit(:user_id, :diary_id, :content)
   end
 
 end
