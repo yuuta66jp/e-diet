@@ -4,8 +4,9 @@ class DiaryCommentsController < ApplicationController
     @diary = Diary.find(params[:diary_id])
     @comment = @diary.diary_comments.build(diary_comment_params)
     @comment.user_id = current_user.id
-    @comment.save
-    redirect_to diary_path(@diary)
+    if @comment.save
+      reder :index
+    end
   end
 
   def edit
@@ -23,8 +24,9 @@ class DiaryCommentsController < ApplicationController
   def destroy
     @diary = Diary.find(params[:diary_id])
     @comment = DiaryComment.find(params[:id])
-    @comment.destroy
-    redirect_to diary_path(@diary)
+    if @comment.destroy
+      render :index
+    end
   end
 
   private
