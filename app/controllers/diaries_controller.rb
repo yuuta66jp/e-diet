@@ -44,6 +44,9 @@ class DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
     # @diaryに紐づいたmeal_recordsを取得
     @meal_records = @diary.meal_records
+    # comment表示、作成
+    @comments = @diary.diary_comments
+    @comment = @diary.diary_comments.build
   end
 
   def edit

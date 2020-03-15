@@ -19,7 +19,10 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :create]
   get       'congfirm' => 'users#congfirm'
 
-  resources :diaries
+  resources :diaries do
+    resources :diary_comments, except: [:new, :index]
+  end
+
   resources :meal_records, except: [:index, :show]
   resources :rewards,        only: :index
   resources :topics,         only: [:index, :show]

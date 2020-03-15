@@ -23,3 +23,24 @@
 <%= link_to "編集", edit_diary_path(@diary.id) %>
 
 <%= link_to "削除", diary_path(@diary), method: :delete %>
+
+<h2>コメント</h2>
+
+<% @comments.each do |comment| %>
+  <a><%= link_to user_path(comment.diary.user) do %>
+    <%= attachment_image_tag comment.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></a>
+    <% end %>
+  <a><%= comment.content %></a>
+  <% if comment.user == current_user %>
+  <!-- ルーティングをネストしているため引数が２つ(diary.id,comment.id)必要 -->
+  <a><%= link_to "編集", edit_diary_diary_comment_path(comment.diary, comment) %></a>
+  <a><%= link_to "削除", diary_diary_comment_path(comment.diary, comment), method: :delete %></a>
+  <% end %>
+<% end %>
+
+
+
+  <%= form_with model: [@diary, @comment], local: true do |f| %>
+    <%= f.text_area :content, class: "form-control", rows: 5, placeholder: "コメントはここに" %>
+    <%= f.submit "コメントする" %>
+  <% end %>

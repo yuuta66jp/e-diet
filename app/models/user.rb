@@ -8,9 +8,10 @@ class User < ApplicationRecord
   attachment :profile_image
 
   # アソシエーション設定
-  has_many :diaries,      dependent: :destroy
-  has_many :body_weights, dependent: :destroy
-  has_many :rewards,      dependent: :destroy
+  has_many :diaries,        dependent: :destroy
+  has_many :body_weights,   dependent: :destroy
+  has_many :rewards,        dependent: :destroy
+  has_many :diary_comments, dependent: :destroy
 
   # enum機能の定義
   enum gender:        { 男性: 0, 女性: 1, その他: 2 }
