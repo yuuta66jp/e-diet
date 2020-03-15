@@ -9,18 +9,6 @@ class DiaryCommentsController < ApplicationController
     end
   end
 
-  def edit
-    @diary = Diary.find(params[:diary_id])
-    @comment = DiaryComment.find(params[:id])
-  end
-
-  def update
-    @diary = Diary.find(params[:diary_id])
-    @comment = DiaryComment.find(params[:id])
-    @comment.update(diary_comment_params)
-    redirect_to diary_path(@diary)
-  end
-
   def destroy
     @diary = Diary.find(params[:diary_id])
     @comment = DiaryComment.find(params[:id])

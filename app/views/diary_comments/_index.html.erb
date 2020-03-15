@@ -5,7 +5,6 @@
   <a><%= comment.content %></a>
   <% if comment.user == current_user %>
   <!-- ルーティングをネストしているため引数が２つ(diary.id,comment.id)必要 -->
-  <a><%= link_to "編集", edit_diary_diary_comment_path(comment.diary, comment) %></a>
   <!-- remote: trueにてJS形式でリクエストを送る -->
   <a><%= link_to "削除", diary_diary_comment_path(comment.diary, comment), method: :delete, remote: true %></a>
   <% end %>

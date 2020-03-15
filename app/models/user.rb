@@ -12,12 +12,18 @@ class User < ApplicationRecord
   has_many :body_weights,   dependent: :destroy
   has_many :rewards,        dependent: :destroy
   has_many :diary_comments, dependent: :destroy
-  # class_nameを使用し関連名からモデル名を推定できない場合、参照先(モデル名)を指定する
-  # foreign_keyを使用し直接外部キー(カラム)を指定する
+
+  #自分がフォローしている人
+  # フォローする側のUser(="follower_id")からみてフォローされるUserを中間テーブル(follower)を介して集める
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy # フォロー取得
+  # 中間テーブル(follower)を通して(through)、followedモデル(source)のUser(フォローされた側)を集めることをfollowing_userと定義する
+  has_many :following_user, through: :follower, source: :followed
+
+  #自分をフォローしている人
+  # フォローされる側のUser(="followed_id")からみてフォローしてくるUserを中間テーブル(followed)を介して集める
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy # フォロワー取得
-  has_many :following_user, through: :follower, source: :followed #自分がフォローしている人
-  has_many :follower_user,  through: :followed, source: :follower #自分がフォローしている人
+  # 中間テーブル(followed)を通して(through)、followerモデル(source)のUser(フォローする側)を集めることをfollower_userと定義する
+  has_many :follower_user,  through: :followed, source: :follower
 
   # enum機能の定義
   enum gender:        { 男性: 0, 女性: 1, その他: 2 }
