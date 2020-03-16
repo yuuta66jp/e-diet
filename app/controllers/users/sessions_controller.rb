@@ -11,18 +11,19 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
    def create
      super
+     user = current_user
      # sign_in時のポイント機能(１日1回付与)(UTC時刻を基準にしているため時差分-9時間調整)
      time0 = Time.current.midnight.advance(hours: -9)
      time1 = Time.current.end_of_day.advance(hours: -9)
      # 同じハッシュ内に複数並べ条件を追加
-     unless current_user.rewards.where(issue_reason: 1, created_at: time0..time1).exists?
-
-       @sign_in_point = current_user.rewards.build(
-         point:        20,
+     unless user.rewards.where(issue_reason: 1, created_at: time0..time1).exists?
+       @sign_in_point = user.rewards.build(
+         point:        5,
          issue_reason: 1
          )
        @sign_in_point.save
-
+      # ランクステータ変更確認(ポイント取得後)
+      user.change_rank(user.rewards.total_point)
      end
    end
 

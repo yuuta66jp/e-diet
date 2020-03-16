@@ -1,2 +1,2 @@
-$("#comments_area").html("<%= j(render 'index', { comments: @comment.diary.diary_comments }) %>")
+$("#comments_area").html("<%= j(render partial: 'index', locals: { comments: @comment.diary.diary_comments }) %>")
 $("textarea").val('')
