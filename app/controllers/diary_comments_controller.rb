@@ -6,11 +6,9 @@ class DiaryCommentsController < ApplicationController
     @comment.user_id = current_user.id
     if @comment.save
        # コメントポイント付与
-       @comment_point = current_user.rewards.build(
-         point:        5,
-         issue_reason: 3
-         )
-       @comment_point.save
+       Reward.comment_point(current_user)
+       # ランクステータ変更確認(ポイント取得後)
+       current_user.change_rank(current_user.rewards.total_point)
       render :index
     end
   end
@@ -20,8 +18,10 @@ class DiaryCommentsController < ApplicationController
     @comment = DiaryComment.find(params[:id])
     if @comment.destroy
       # コメントポイント削除
-      point = current_user.rewards.find_by(issue_reason: 3)
-      point.destroy
+      comment_point = current_user.rewards.find_by(issue_reason: 3)
+      comment_point.destroy
+      # ランクステータ変更確認(ポイント変更後)
+      current_user.change_rank(current_user.rewards.total_point)
       render :index
     end
   end

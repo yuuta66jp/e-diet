@@ -13,11 +13,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
    def create
      super
      # sign_up時のポイント機能
-     @sign_up_point = current_user.rewards.build(
-       point:        50,
-       issue_reason: 0
-       )
-     @sign_up_point.save
+     Reward.sign_up_point(current_user)
+      # ランクステータ変更確認(ポイント取得後)
+      current_user.change_rank(current_user.rewards.total_point)
    end
 
   # GET /resource/edit

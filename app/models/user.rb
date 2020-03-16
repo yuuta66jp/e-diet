@@ -50,12 +50,12 @@ class User < ApplicationRecord
 
   # ランクステータス変更メソッド
   def change_rank(point)
-    # シルバーランク変更(100point以上)
-    if point >= 100
-      update(rank_status: 1)
     # ゴールドランク変更(200point以上)
-    elsif point >= 200
+    if point >= 200
       update(rank_status: 2)
+    # シルバーランク変更(100point以上)
+    elsif point >= 100
+      update(rank_status: 1)
     else
     # グリーンランク(初期ランク)
       update(rank_status: 0)
