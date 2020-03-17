@@ -3,9 +3,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
-  # ログイン後のリダイレクト先を変更(マイページ)
+  # ログイン後のリダイレクト先を変更
   def after_sign_in_path_for(resource)
-    user_path(current_user)
+    case resource
+      when User
+        user_path(current_user)
+      when Admin
+        admins_users_path
+    end
   end
   # ログアウト後のリダイレクト先を変更(トップページ)
   def after_sign_out_path_for(resource)

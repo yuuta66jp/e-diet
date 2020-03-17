@@ -13,25 +13,35 @@ class DiariesController < ApplicationController
     # build=モデルオブジェクトを生成(newの別名)
     # 1対Nの際、buildによる関連付けメソッド(関連付けメソッド名.build)を使用
     @diary = user.diaries.build(diary_params)
-    @diary.save
-    # 日記作成ポイント付与
-    Reward.diary_point(user)
-    # body_weight作成
-    # 1対１の際、buildによる関連付けメソッド(build_関連付けメソッド名)を使用
-    @body_weight = @diary.build_body_weight(
-      user_id:       user.id,
-      weight_record: params[:diary][:body_weight][:weight_record]
-      )
-    @body_weight.save
-    # 目標体重達成ポイント付与
-    if @body_weight.weight_record <= user.goal_weight
-      Reward.achieve_point(user)
+    if @diary.save
+      # 日記作成ポイント付与
+      Reward.diary_point(user)
+      # body_weight作成
+      # 1対１の際、buildによる関連付けメソッド(build_関連付けメソッド名)を使用
+      @body_weight = @diary.build_body_weight(
+       user_id:       user.id,
+       weight_record: params[:diary][:body_weight][:weight_record]
+       )
+      if @body_weight.save
+        # 目標体重達成ポイント付与
+        if @body_weight.weight_record <= user.goal_weight
+          Reward.achieve_point(user)
+        end
+        # ランクステータ変更確認(ポイント取得後)
+        user.change_rank(user.rewards.total_point)
+        # createで新規食事記録画面へ遷移（パラメーターをredirect_toに直接渡す）
+        flash[:notice] = '日記が作成されました'
+        redirect_to new_meal_record_path(id: @diary.id)
+      #if文でエラー時の分岐
+      else
+        flash[:alert] = '体重を入力してください'
+        redirect_to new_diary_path
+      end
+    #if文でエラー時の分岐
+    else
+      flash[:alert] = '日付を入力してください'
+      redirect_to new_diary_path
     end
-    # ランクステータ変更確認(ポイント取得後)
-    user.change_rank(user.rewards.total_point)
-    # createで新規食事記録画面へ遷移（パラメーターをredirect_toに直接渡す）
-    flash[:notice] = '日記が作成されました'
-    redirect_to new_meal_record_path(id: @diary.id)
   end
 
   def index
@@ -56,12 +66,23 @@ class DiariesController < ApplicationController
 
   def update
     @diary = Diary.find(params[:id])
-    @diary.update(diary_params)
-    @body_weight = BodyWeight.find_by(diary_id: params[:id])
-    @body_weight.update(
-      weight_record: params[:diary][:body_weight][:weight_record]
-      )
-    redirect_to diary_path(@diary.id)
+    if @diary.update(diary_params)
+      @body_weight = BodyWeight.find_by(diary_id: params[:id])
+      if @body_weight.update(
+        weight_record: params[:diary][:body_weight][:weight_record]
+        )
+        flash[:notice] = '更新が成功しました'
+        redirect_to diary_path(@diary.id)
+      #if文でエラー時の分岐
+      else
+        flash[:alert] = '体重を入力してください'
+        redirect_to edit_diary_path(@diary.id)
+      end
+    #if文でエラー時の分岐
+    else
+      flash[:alert] = '活動量を入力してください'
+      redirect_to edit_diary_path(@diary.id)
+    end
   end
 
   def destroy
@@ -73,7 +94,7 @@ class DiariesController < ApplicationController
   private
 
   def diary_params
-    params.require(:diary).permit(:user_id, :remark, :activity_status, :tag_list, :created_on)
+    params.require(:diary).permit(:remark, :activity_status, :tag_list, :created_on)
   end
 
 end

@@ -10,11 +10,16 @@ class MealRecordsController < ApplicationController
 
   def create
     @meal_record = MealRecord.new(meal_record_params)
-    @meal_record.save
     # diary_idの取得
     @diary_id = params[:meal_record][:diary_id]
-    # createで日記編集画面へ遷移
-    redirect_to edit_diary_path(id: @diary_id)
+    if @meal_record.save
+      # createで日記編集画面へ遷移
+      redirect_to edit_diary_path(id: @diary_id)
+    #if文でエラー時の分岐
+    else
+      flash[:alert] = '入力してください'
+      redirect_to new_meal_record_path(id: @diary_id)
+    end
   end
 
   def edit
@@ -23,9 +28,14 @@ class MealRecordsController < ApplicationController
 
   def update
     @meal_record =MealRecord.find(params[:id])
-    @meal_record.update(meal_record_params)
-    # updateで日記編集画面へ遷移
-    redirect_to edit_diary_path(@meal_record.diary_id)
+    if @meal_record.update(meal_record_params)
+      # updateで日記編集画面へ遷移
+      redirect_to edit_diary_path(@meal_record.diary_id)
+    #if文でエラー時の分岐
+    else
+      flash[:alert] = '入力してください'
+      redirect_to edit_meal_record_path(@meal_record)
+    end
   end
 
   def destroy
