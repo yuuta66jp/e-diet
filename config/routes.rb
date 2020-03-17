@@ -6,8 +6,10 @@ Rails.application.routes.draw do
     :sessions      => 'users/sessions'
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'diaries#index'
-
+  # ルート設定
+  root 'home#top'
+  # aboutページ設定
+  get 'home/about', to: 'home#about'
   # namespaceを使い指定のパス(admin)にする
   namespace :admins do
     resources :users, except: [:new, :create]

@@ -37,6 +37,8 @@
             <li><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
           <!-- gest -->
           <% else %>
+            <li class= "nav-item"><%= link_to "home", root_path %></li>
+            <li class= "nav-item"><%= link_to "about", home_about_path %></li>
             <li class= "nav-item"><%= link_to "signup", new_user_registration_path %></li>
             <li class= "nav-item"><%= link_to "login", new_user_session_path %></li>
           <% end %>
@@ -45,6 +47,8 @@
 
     </div>
   </header>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
   <!--ヘッダーの記述-->
   <%= yield %>
 </body>
