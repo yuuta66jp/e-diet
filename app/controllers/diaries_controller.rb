@@ -30,6 +30,7 @@ class DiariesController < ApplicationController
     # ランクステータ変更確認(ポイント取得後)
     user.change_rank(user.rewards.total_point)
     # createで新規食事記録画面へ遷移（パラメーターをredirect_toに直接渡す）
+    flash[:notice] = '日記が作成されました'
     redirect_to new_meal_record_path(id: @diary.id)
   end
 

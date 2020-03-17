@@ -4,6 +4,6 @@ class DiaryComment < ApplicationRecord
   belongs_to :diary
 
   # バリデーション設定
-  validates :content,　presence: true
+  validates :content, presence: true
 
 end

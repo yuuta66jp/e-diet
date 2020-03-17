@@ -7,8 +7,8 @@ class Diary < ApplicationRecord
 
   # バリデーション設定
   # :onオプションでupdate時のみバリデーションを設定
-  validates :activity_status,　presence: true, on: :update
-  validates :created_on,　     presence: true
+  validates :activity_status, presence: true, on: :update
+  validates :created_on,      presence: true
 
 
   # enum機能の定義
