@@ -1,4 +1,6 @@
 class RelationshipsController < ApplicationController
+  # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
+  before_action :authenticate_user!, except: [:index]
 
   def index
     user = User.find(params[:user_id])

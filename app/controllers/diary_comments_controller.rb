@@ -1,4 +1,6 @@
 class DiaryCommentsController < ApplicationController
+  # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
+  before_action :authenticate_user!
 
   def create
     @diary = Diary.find(params[:diary_id])

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @users = User.all

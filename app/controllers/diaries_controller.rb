@@ -1,4 +1,6 @@
 class DiariesController < ApplicationController
+  # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
+  before_action :authenticate_user!, except: [:index, :show]
 
   def new
     # viewへ渡すためのインスタンス変数に空のモデルオブジェクトを作成

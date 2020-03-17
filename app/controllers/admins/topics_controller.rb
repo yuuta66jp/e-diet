@@ -1,5 +1,6 @@
 class Admins::TopicsController < ApplicationController
-
+  # adminログイン時にのみアクセスを許可する(deviseのメッソド)
+  before_action :authenticate_admin!
   def new
     @topic = Topic.new
   end

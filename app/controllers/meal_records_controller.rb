@@ -1,4 +1,6 @@
 class MealRecordsController < ApplicationController
+  # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
+  before_action :authenticate_user!
 
   def new
     @meal_record = MealRecord.new

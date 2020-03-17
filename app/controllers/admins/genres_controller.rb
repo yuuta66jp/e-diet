@@ -1,5 +1,6 @@
 class Admins::GenresController < ApplicationController
-
+  # adminログイン時にのみアクセスを許可する(deviseのメッソド)
+  before_action :authenticate_admin!
   # indexページにて新規登録
   def index
     @genres = Genre.all
