@@ -17,26 +17,37 @@
  @import "bootstrap";
 
 header {
-  color:white;
+  color: #008000;
 }
 
 .nav > a {
-  color:white;
+  color: #008000;
 }
 
 .nav > li > a {
-  color:white;
+  color: #008000;
 }
 
-header .navbar-left span {
-  font-size: 20px;
-  padding-top: 10px;
+.navbar-fixed-top {
+  top: 15px;
+  right: 20px;
+  left: 20px;
+  border-radius: 50px 50px;
+  background: #ffffff;
 }
 
 body {
-  margin-top: 50px;
+  margin-top: 70px;
 }
 
 .actions {
   margin-top:10px;
 }
+
+body {background-image: url("yasai.jpg");
+  background-size:cover;
+  background-attachment: fixed;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+ }

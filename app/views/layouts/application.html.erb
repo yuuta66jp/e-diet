@@ -11,7 +11,7 @@
 
 <body>
   <!--ヘッダーの記述-->
-  <header class="navbar navbar-fixed-top navbar-dark bg-primary mb-2">
+  <header class="navbar navbar-fixed-top mb-2">
     <div class="container">
 
       <nav class="nav navbar-nav navbar-left">
@@ -47,8 +47,13 @@
 
     </div>
   </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <!-- メッセージの表示 -->
+    <% if notice %>
+      <p class="alert"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
   <!--ヘッダーの記述-->
   <%= yield %>
 </body>

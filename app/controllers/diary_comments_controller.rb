@@ -14,7 +14,7 @@ class DiaryCommentsController < ApplicationController
        user.change_rank(user.rewards.total_point)
       render :index
     else #if文でエラー時の分岐表示
-      redirect_to diary_path(@diary), alert: 'コメントを入力してください'
+      redirect_to diary_path(@diary), notice: 'コメントを入力してください'
     end
   end
 

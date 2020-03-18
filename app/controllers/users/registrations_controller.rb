@@ -12,10 +12,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
    def create
      super
-     # sign_up時のポイント機能
-     Reward.sign_up_point(current_user)
-      # ランクステータ変更確認(ポイント取得後)
-      current_user.change_rank(current_user.rewards.total_point)
+       if user_signed_in?
+         # sign_up時のポイント機能
+         Reward.sign_up_point(current_user)
+         # ランクステータ変更確認(ポイント取得後)
+         current_user.change_rank(current_user.rewards.total_point)
+        end
    end
 
   # GET /resource/edit
