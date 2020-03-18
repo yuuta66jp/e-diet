@@ -13,7 +13,6 @@
   <!--ヘッダーの記述-->
   <header class="navbar navbar-fixed-top mb-2">
     <div class="container">
-
       <nav class="nav navbar-nav navbar-left">
         <a class="navbar-brand" href="#">e-diet</a>
       </nav>
@@ -22,19 +21,19 @@
           <!-- if文でuser,admin,gestuser時の表示を分岐 -->
           <!-- user -->
           <% if user_signed_in? %>
-            <li><%= link_to current_user.name, user_path(current_user) %></li>
-            <li><%= link_to "topics", topics_path %></li>
-            <li><%= link_to "users", users_path %></li>
-            <li><%= link_to "diaries", diaries_path %></li>
-            <li><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+            <li class= "nav-item"><%= link_to current_user.name, user_path(current_user) %></li>
+            <li class= "nav-item"><%= link_to "topics", topics_path %></li>
+            <li class= "nav-item"><%= link_to "users", users_path %></li>
+            <li class= "nav-item"><%= link_to "diaries", diaries_path %></li>
+            <li class= "nav-item"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
           <!-- admin -->
           <% elsif admin_signed_in? %>
-            <li>管理者</li>
-            <li><%= link_to "users", admins_users_path %></li>
-            <li><%= link_to "topics", admins_topics_path %></li>
-            <li><%= link_to "diaries", admins_diaries_path %></li>
-            <li><%= link_to "ポイント取得一覧", admins_rewards_path(index: "all") %></li>
-            <li><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
+            <li class= "nav-item">管理者</li>
+            <li class= "nav-item"><%= link_to "users", admins_users_path %></li>
+            <li class= "nav-item"><%= link_to "topics", admins_topics_path %></li>
+            <li class= "nav-item"><%= link_to "diaries", admins_diaries_path %></li>
+            <li class= "nav-item"><%= link_to "ポイント取得一覧", admins_rewards_path(index: "all") %></li>
+            <li class= "nav-item"><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
           <!-- gest -->
           <% else %>
             <li class= "nav-item"><%= link_to "home", root_path %></li>
@@ -44,9 +43,11 @@
           <% end %>
         </ul>
       </nav>
-
     </div>
   </header>
+  <!--ヘッダーの記述-->
+
+  <div class="container">
     <!-- メッセージの表示 -->
     <% if notice %>
       <p class="alert"><%= notice %></p>
@@ -54,7 +55,7 @@
     <% if alert %>
       <p class="alert"><%= alert %></p>
     <% end %>
-  <!--ヘッダーの記述-->
-  <%= yield %>
+    <%= yield %>
+  </div>
 </body>
 </html>
