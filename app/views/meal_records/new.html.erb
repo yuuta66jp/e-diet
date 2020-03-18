@@ -1,6 +1,8 @@
 <h1>新規投稿</h1>
 
 <%= form_with model: @meal_record, url: meal_records_path, local: true do |f| %>
+<!-- エラーメッセージの部分テンプレート(f.objectで@meal_recordをmodelに渡す) -->
+<%= render 'layouts/error_messages', model: f.object %>
   <!-- hidden_fieldにてdiary_idを渡す -->
   <%= f.hidden_field :diary_id, value: @diary.id %>
 
@@ -20,4 +22,3 @@
   <%= f.submit "追加" %>
 
 <% end %>
-

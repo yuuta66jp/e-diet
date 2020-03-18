@@ -1,6 +1,8 @@
 <h1>会員情報編集画面</h1>
 
 <%= form_with model: @user, url: admins_user_path(@user), local: true do |f| %>
+<!-- エラーメッセージの部分テンプレート(f.objectで@userをmodelに渡す) -->
+<%= render 'layouts/error_messages', model: f.object %>
 
     <div class="field">
     <%= f.label :ユーザー名 %><br>

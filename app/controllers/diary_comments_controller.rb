@@ -3,31 +3,31 @@ class DiaryCommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    user = current_user
     @diary = Diary.find(params[:diary_id])
     @comment = @diary.diary_comments.build(diary_comment_params)
-    @comment.user_id = current_user.id
+    @comment.user_id = user.id
     if @comment.save
        # コメントポイント付与
-       Reward.comment_point(current_user)
+       Reward.comment_point(user)
        # ランクステータ変更確認(ポイント取得後)
-       current_user.change_rank(current_user.rewards.total_point)
+       user.change_rank(user.rewards.total_point)
       render :index
-    #if文でエラー時の分岐
-    else
-      flash[:alert] = 'コメントを入力してください'
-      redirect_to diary_path(@diary)
+    else #if文でエラー時の分岐表示
+      redirect_to diary_path(@diary), alert: 'コメントを入力してください'
     end
   end
 
   def destroy
+    user = current_user
     @diary = Diary.find(params[:diary_id])
     @comment = DiaryComment.find(params[:id])
     @comment.destroy
     # コメントポイント削除
-    comment_point = current_user.rewards.find_by(issue_reason: 3)
+    comment_point = user.rewards.find_by(issue_reason: 3)
     comment_point.destroy
     # ランクステータ変更確認(ポイント変更後)
-    current_user.change_rank(current_user.rewards.total_point)
+    user.change_rank(user.rewards.total_point)
     render :index
   end
 

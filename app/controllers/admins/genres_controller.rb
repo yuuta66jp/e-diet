@@ -11,10 +11,10 @@ class Admins::GenresController < ApplicationController
     @genre = Genre.new(genre_params)
     if @genre.save
       # ジャンル一覧ページに遷移
-      redirect_to admins_genres_path
-    else
-      flash[:alert] = '入力してください'
-      redirect_to admins_genres_path
+      redirect_to admins_genres_path, notice: '新規ジャンルが作成されました'
+    else #if文でエラー時の分岐表示
+      @genres = Genre.all
+      render :index
     end
   end
 
@@ -26,11 +26,9 @@ class Admins::GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
       # ジャンル一覧ページに遷移
-      redirect_to admins_genres_path
-    #if文でエラー時の分岐
-    else
-      flash[:alert] = '入力してください'
-      redirect_to edit_admins_genre_path(@genre)
+      redirect_to admins_genres_path, notice: '更新が成功しました！'
+    else #if文でエラー時の分岐表示
+      render :edit
     end
   end
 

@@ -18,6 +18,7 @@
   <%= f.text_area :remark %>
 
   <%= f.fields_for @body_weight do |weight| %>
+
   <h3>体重</h3>
   <%= weight.number_field :weight_record, min: 0 %>
   <% end %>

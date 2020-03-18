@@ -13,15 +13,15 @@ class DiariesController < ApplicationController
     # build=モデルオブジェクトを生成(newの別名)
     # 1対Nの際、buildによる関連付けメソッド(関連付けメソッド名.build)を使用
     @diary = user.diaries.build(diary_params)
+    # 1対１の際、buildによる関連付けメソッド(build_関連付けメソッド名)を使用
+    @body_weight = @diary.build_body_weight(
+      user_id:       user.id,
+      weight_record: params[:diary][:body_weight][:weight_record]
+      )
     if @diary.save
       # 日記作成ポイント付与
       Reward.diary_point(user)
       # body_weight作成
-      # 1対１の際、buildによる関連付けメソッド(build_関連付けメソッド名)を使用
-      @body_weight = @diary.build_body_weight(
-       user_id:       user.id,
-       weight_record: params[:diary][:body_weight][:weight_record]
-       )
       if @body_weight.save
         # 目標体重達成ポイント付与
         if @body_weight.weight_record <= user.goal_weight
@@ -30,17 +30,14 @@ class DiariesController < ApplicationController
         # ランクステータ変更確認(ポイント取得後)
         user.change_rank(user.rewards.total_point)
         # createで新規食事記録画面へ遷移（パラメーターをredirect_toに直接渡す）
-        flash[:notice] = '日記が作成されました'
-        redirect_to new_meal_record_path(id: @diary.id)
-      #if文でエラー時の分岐
-      else
-        flash[:alert] = '体重を入力してください'
-        redirect_to new_diary_path
+        redirect_to new_meal_record_path(id: @diary.id), notice: '日記が作成されました！'
+      else #if文でエラー時の分岐表示
+        @meal_records = @diary.meal_records
+        flash.now[:alert] = '体重を入力してください'
+        render :edit
       end
-    #if文でエラー時の分岐
-    else
-      flash[:alert] = '日付を入力してください'
-      redirect_to new_diary_path
+    else #if文でエラー時の分岐表示
+      render :new
     end
   end
 
@@ -66,22 +63,20 @@ class DiariesController < ApplicationController
 
   def update
     @diary = Diary.find(params[:id])
+    @meal_records = @diary.meal_records
+    @body_weight = BodyWeight.find_by(diary_id: params[:id])
     if @diary.update(diary_params)
-      @body_weight = BodyWeight.find_by(diary_id: params[:id])
       if @body_weight.update(
         weight_record: params[:diary][:body_weight][:weight_record]
         )
-        flash[:notice] = '更新が成功しました'
-        redirect_to diary_path(@diary.id)
-      #if文でエラー時の分岐
-      else
-        flash[:alert] = '体重を入力してください'
-        redirect_to edit_diary_path(@diary.id)
+        redirect_to diary_path(@diary.id), notice: '更新が成功しました！'
+      else #if文でエラー時の分岐表示
+        flash.now[:alert] = '体重を入力してください'
+        render :edit
       end
-    #if文でエラー時の分岐
-    else
-      flash[:alert] = '活動量を入力してください'
-      redirect_to edit_diary_path(@diary.id)
+    else #if文でエラー時の分岐表示
+      flash.now[:alert] = '活動量を選択してください'
+      render :edit
     end
   end
 

@@ -1,6 +1,8 @@
 <h1>新規登録</h1>
 
 <%= form_with model: @topic, url:admins_topics_path, local: true do |f| %>
+<!-- エラーメッセージの部分テンプレート(f.objectで@topicをmodelに渡す) -->
+<%= render 'layouts/error_messages', model: f.object %>
 
   <h3>画像</h3>
   <%= f.attachment_field :topic_image %>

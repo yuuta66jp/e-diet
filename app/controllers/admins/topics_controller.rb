@@ -8,11 +8,9 @@ class Admins::TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_prams)
     if @topic.save
-      redirect_to admins_topic_path(@topic)
-    #if文でエラー時の分岐
-    else
-      flash[:alert] = '入力してください'
-      redirect_to new_admins_topic_path
+      redirect_to admins_topic_path(@topic), notice: 'トピックスが作成されました！'
+    else #if文でエラー時の分岐表示
+      render :new
     end
   end
 
@@ -31,11 +29,9 @@ class Admins::TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     if @topic.update(topic_prams)
-      redirect_to admins_topic_path(@topic)
-    #if文でエラー時の分岐
-    else
-      flash[:alert] = '入力してください'
-      redirect_to edit_admins_topic_paht(@topic)
+      redirect_to admins_topic_path(@topic), notice: '更新が成功しました！'
+    else #if文でエラー時の分岐表示
+      render :edit
     end
   end
 

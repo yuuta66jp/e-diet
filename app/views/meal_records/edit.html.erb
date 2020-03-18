@@ -1,5 +1,7 @@
 <h1>edit</h1>
 <%= form_with model: @meal_record, local: true do |f| %>
+<!-- エラーメッセージの部分テンプレート(f.objectで@meal_recordをmodelに渡す) -->
+<%= render 'layouts/error_messages', model: f.object %>
 
   <h3>食事画像</h3>
   <%= f.attachment_field :meal_image %>

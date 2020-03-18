@@ -19,11 +19,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user)
-    #if文でエラー時の分岐
-    else
-      flash[:alert] = '入力してください'
-      redirect_to edit_user_path(@user)
+      redirect_to user_path(@user), notice: '更新が成功しました！'
+    else #if文でエラー時の分岐表示
+      render :edit
     end
   end
 

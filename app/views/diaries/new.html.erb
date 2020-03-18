@@ -1,7 +1,8 @@
-
 <h1>新規投稿</h1>
 
 <%= form_with model: @diary, local: true do |f| %>
+<!-- エラーメッセージの部分テンプレート(f.objectで@diaryをmodelに渡す) -->
+<%= render 'layouts/error_messages', model: f.object %>
 
   <h3>日付</h3>
   <%= f.date_field :created_on %>
@@ -10,9 +11,10 @@
   <h3>メモ</h3>
   <%= f.text_area :remark %>
 
-  <%= f.fields_for @body_weight do |weight| %>
+  <%= f.fields_for @body_weight do |f| %>
+
   <h3>体重</h3>
-  <%= weight.number_field :weight_record, min: 0 %>
+  <%= f.number_field :weight_record, min: 0 %>
   <% end %>
 
   <h3>活動量</h3>
