@@ -45,9 +45,14 @@
       </nav>
     </div>
   </header>
-  <!--ヘッダーの記述-->
-
-  <div class="container">
+  <!-- userによりデザインを分岐表示 -->
+  <% if user_signed_in? %>
+    <div class="main container">
+  <% elsif admin_signed_in? %>
+    <div class="container">
+  <% else %>
+    <div class="login container">
+  <% end %>
     <!-- メッセージの表示 -->
     <% if notice %>
       <p class="alert"><%= notice %></p>

@@ -1,11 +1,10 @@
-<div class="login container">
-  <div class="row">
-    <div class="col-xs-12 center">
-      <h2>ログインはこちらから</h2>
+<div class="row">
+  <div class="col-xs-12 center">
+    <h2>ログインはこちらから</h2>
 
-      <div class="form-group">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="field">
+    <div class="form-group">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
         <%= f.label :ユーザー名 %><br />
         <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
       </div>
@@ -27,7 +26,5 @@
       </div>
       <% end %>
       <%= render "devise/shared/links" %>
-
     </div>
   </div>
-</div>

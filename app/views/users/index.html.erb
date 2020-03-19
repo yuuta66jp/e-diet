@@ -1,20 +1,26 @@
-<h1>ユーザー一覧</h1>
-
-<% @users.each do |user| %>
-  <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>
-  <h4>ユーザー名</h4>
-    <p><%= user.name %></p>
-  <h4>ランク</h4>
-    <p><%= user.rank_status %></p>
-  <h4>フォロー</h4>
-    <p>フォロー数：<%= link_to user.follower.count, user_relationships_path(user_id: user.id, index: "follower") %></p>
-    <P>フォロワー数：<%= link_to user.followed.count, user_relationships_path(user_id: user.id, index: "followed") %></P>
-    <% if current_user != user %>
-      <% if current_user.following?(user) %>
-        <%= link_to "フォローを外す", user_relationships_path(user.id), method: :delete %>
-      <% else %>
-        <%= link_to "フォローする", user_relationships_path(user.id), method: :POST %>
+<div class="row">
+  <% @users.each do |user| %>
+  <div class="col-xs-3">
+    <div class="profile">
+      <%= link_to user_path(user) do %>
+        <%= attachment_image_tag user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %><br>
+        <%= user.name %>
       <% end %>
-    <% end %>
-    <p><%= link_to "show", user_path(user) %></p>
-<% end %>
+        <p>
+          フォロー：<%= link_to user.follower.count, user_relationships_path(user_id: user.id, index: "follower") %>
+          フォロワー：<%= link_to user.followed.count, user_relationships_path(user_id: user.id, index: "followed") %>
+        </p>
+        <p><%= user.rank_status %>ランク（<%= user.rewards.total_point %>point）</p>
+        <p>日記投稿数：<%= link_to user.diaries.count, diaries_path %>件</p>
+        <% if current_user != user %>
+          <% if current_user.following?(user) %>
+            <%= link_to "フォローを外す", user_relationships_path(user.id), { method: :delete, class: "btn btn-danger" } %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(user.id), { method: :POST, class: "btn btn-success" } %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+  <% end %>
+</div>
+<%= paginate @users, class: "paginate" %>
