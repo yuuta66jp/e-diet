@@ -1,16 +1,20 @@
-<h1>index</h1>
-
+<div class="row">
   <%= link_to "新規作成", new_diary_path %>
 
-<% @diaries.each do |diary| %>
-  <p>メモ</p>
-  <!-- (diary)でeach文のdiaryオブジェクトを指定 -->
-  <span><%= link_to diary.remark, diary_path(diary) %></span>
+  <% @diaries.each do |diary| %>
+  <div class="col-xs-3">
+    <div class="index">
+      <p>メモ</p>
+      <!-- (diary)でeach文のdiaryオブジェクトを指定 -->
+      <p><%= link_to diary.remark, diary_path(diary) %></p>
 
-  <p>活動量</p>
-  <span><%= diary.activity_status %></span>
+      <p>活動量</p>
+      <p><%= diary.activity_status %></p>
 
-  <p>タグ</p>
-  <%= render "diaries/tag_list", tag_list: diary.tag_list %>
-
-<% end %>
+      <p>タグ</p>
+      <%= render "diaries/tag_list", tag_list: diary.tag_list %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<%= paginate @diaries, class: "paginate" %>

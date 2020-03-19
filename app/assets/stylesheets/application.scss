@@ -67,12 +67,25 @@ header {
   text-align: center;
 }
 
-.profile {
+.index {
   padding: 50px 25px;
   text-align: center;
 }
 
+.profile {
+  padding: 50px 100px;
+}
 
+.box {
+  padding: 100px 50px;
+  box-shadow:0 2px 4px 0 rgba(0,0,0,.15);
+  border-radius: 10px;
+  margin-top: 10px;
+  text-align: center;
+  background-color: #dcdcdc;
+  font-size: 20px;
+
+}
 
 
 

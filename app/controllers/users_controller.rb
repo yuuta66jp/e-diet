@@ -3,13 +3,16 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
+    #@users = User.all
     @users = User.page(params[:page]).reverse_order
   end
 
   def show
     @user = User.find(params[:id])
     # グラフ用体重データ取得(pluckによりカラムの配列を取得)(to_hメソッドにより配列をハッシュに変換)
-    @weight_data = @user.diaries.joins(:body_weight).pluck('diaries.created_on', 'body_weights.weight_record').to_h
+    @user_data = @user.diaries.joins(:body_weight).pluck('diaries.created_on', 'body_weights.weight_record').to_h
+    @self_data = current_user.diaries.joins(:body_weight).pluck('diaries.created_on', 'body_weights.weight_record').to_h
+
   end
 
   def edit

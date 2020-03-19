@@ -1,9 +1,19 @@
-<h1>show</h1>
+<div class="topic">
+  <div class="topic_contents">
+    <h1 clss="topic_title">
+      <%= @topic.title %>
+    </h1>
+    <div class="topic_image">
+      <%= attachment_image_tag @topic, :topic_image, :fill, 50, 50, fallback: "no_image.jpg" %>
+    </div>
+    <div class="topic_body">
+      <p><%= @topic.body %></p>
+    </div>
+  </div>
+</div>
 
-  <h4>タイトル</h4>
-    <%= attachment_image_tag @topic, :topic_image, :fill, 50, 50, fallback: "no_image.jpg" %>
-    <p><%= @topic.title %></p>
-  <h4>内容</h4>
-    <p><%= @topic.body %></p>
-  <h4>ジャンル</h4>
-    <p><%= @topic.genre.name %></p>
+
+
+
+
+

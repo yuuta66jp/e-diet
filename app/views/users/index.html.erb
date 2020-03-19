@@ -1,7 +1,7 @@
 <div class="row">
   <% @users.each do |user| %>
   <div class="col-xs-3">
-    <div class="profile">
+    <div class="index">
       <%= link_to user_path(user) do %>
         <%= attachment_image_tag user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %><br>
         <%= user.name %>
@@ -11,6 +11,12 @@
           フォロワー：<%= link_to user.followed.count, user_relationships_path(user_id: user.id, index: "followed") %>
         </p>
         <p><%= user.rank_status %>ランク（<%= user.rewards.total_point %>point）</p>
+        <% if user.public_status == "公開" %>
+          <p>身長<%= user.height %>cm
+            <!-- ここに最新の体重を表示したい -->
+             体重<%= user.goal_weight %>Kg</p>
+          <p>目標体重<%= user.goal_weight %>Kg</p>
+        <% end %>
         <p>日記投稿数：<%= link_to user.diaries.count, diaries_path %>件</p>
         <% if current_user != user %>
           <% if current_user.following?(user) %>
