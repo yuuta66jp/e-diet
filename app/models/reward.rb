@@ -10,7 +10,7 @@ class Reward < ApplicationRecord
 
   # enum機能の定義
   enum issue_reason: { 新規登録: 0, ログイン: 1, 日記投稿:2, コメント: 3, フォロー: 4, 目標達成:5 }
-  # pointの定義
+  # point(定数)の定義
   Point = [50, 5, 20, 5, 20, 100]
 
   # 取得ポイントの合計値を計算

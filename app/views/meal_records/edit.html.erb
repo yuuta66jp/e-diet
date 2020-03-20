@@ -1,22 +1,34 @@
-<h1>edit</h1>
-<%= form_with model: @meal_record, local: true do |f| %>
-<!-- エラーメッセージの部分テンプレート(f.objectで@meal_recordをmodelに渡す) -->
-<%= render 'layouts/error_messages', model: f.object %>
-
-  <h3>食事画像</h3>
-  <%= f.attachment_field :meal_image %>
-
-  <h3>タイトル</h3>
-  <%= f.text_field :title %>
-
-
-  <h3>本文</h3>
-  <%= f.text_area :body %>
-
-  <h3>いつ食べましたか</h3>
-  <%= f.select :intake_status, MealRecord.intake_statuses.keys.to_a, prompt: "選択してください" %>
-
-  <%= f.submit "編集する" %>
-
-<% end %>
-
+<div class="form edit">
+  <div class="row">
+    <div class="col-xs-12 center">
+      <h1 class="new_meal">食事記録編集画面</h1>
+      <%= form_with model: @meal_record, local: true do |f| %>
+      <!-- エラーメッセージの部分テンプレート(f.objectで@meal_recordをmodelに渡す) -->
+      <%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group row">
+        <div class="col-xs-4 col-xs-offset-2">
+          <%= attachment_image_tag @meal_record, :meal_image, size: "150x150", class: "img-rounded", fallback: "no_image1.jpg" %>
+          <%= f.attachment_field :meal_image %>
+        </div>
+        <div class="col-xs-4 title">
+          <%= f.label :食事のタイトル %><br>
+          <%= f.text_field :title, autofocus:true, autocomplete: "title", class: "form-control"  %>
+          <div class="form-group row">
+            <div class="col-xs-12">
+              <%= f.label :内容 %><br>
+              <%= f.text_area :body, autocomplete: "body", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-xs-12">
+              <%= f.label :いつ食べましたか %><br>
+              <%= f.select :intake_status, MealRecord.intake_statuses.keys.to_a, prompt: "選択してください", class: "form-control"  %>
+            </div>
+          </div>
+          <%= f.submit "更新する", class: "btn btn-success" %>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

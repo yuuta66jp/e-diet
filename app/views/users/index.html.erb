@@ -14,8 +14,11 @@
         <% if user.public_status == "公開" %>
           <p>身長<%= user.height %>cm
             <!-- ここに最新の体重を表示したい -->
-             体重<%= user.goal_weight %>Kg</p>
-          <p>目標体重<%= user.goal_weight %>Kg</p>
+             体重<%= user.goal_weight %>kg</p>
+          <p>目標体重<%= user.goal_weight %>kg</p>
+        <% else %>
+          <p>身長：非公開　体重：非公開</p>
+          <p>目標体重：非公開</p>
         <% end %>
         <p>日記投稿数：<%= link_to user.diaries.count, diaries_path %>件</p>
         <% if current_user != user %>

@@ -1,29 +1,51 @@
-<h1>新規投稿</h1>
+<div class="form edit">
+  <div class="row">
+    <div class="col-xs-12 center">
+      <h1>日記作成画面</h1>
+      <%= form_with model: @diary, local: true do |f| %>
+      <!-- エラーメッセージの部分テンプレート(f.objectで@diaryをmodelに渡す) -->
+      <%= render 'layouts/error_messages', model: f.object %>
 
-<%= form_with model: @diary, local: true do |f| %>
-<!-- エラーメッセージの部分テンプレート(f.objectで@diaryをmodelに渡す) -->
-<%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group row">
+        <div class="col-xs-2 col-xs-offset-5">
+          <%= f.label :日付 %><br>
+          <%= f.date_field :created_on, class: "form-control" %>
+        </div>
+      </div>
 
-  <h3>日付</h3>
-  <%= f.date_field :created_on %>
+      <%= f.fields_for @body_weight do |f| %>
+      <div class="form-group row">
+        <div class="col-xs-2 col-xs-offset-5">
+        <%= f.label :体重 %><br>
+        <%= f.number_field :weight_record, min: 0, class: "form-control" %>
+        <% end %>
+        </div>
+      </div>
 
+      <div class="form-group row">
+        <div class="col-xs-4 col-xs-offset-4">
+        <%= f.label :メモ %><br>
+        <%= f.text_area :remark, class: "form-control" %>
+        </div>
+      </div>
 
-  <h3>メモ</h3>
-  <%= f.text_area :remark %>
+      <div class="form-group row">
+        <div class="col-xs-4 col-xs-offset-4">
+        <%= f.label :活動量 %><br>
+        <%= f.select :activity_status, Diary.activity_statuses.keys.to_a, prompt: "選択してください", class: "form-control" %>
+        </div>
+      </div>
 
-  <%= f.fields_for @body_weight do |f| %>
+      <div class="form-group row">
+        <div class="col-xs-4 col-xs-offset-4">
+        <%= f.label :タグ %><br>
+        <%= f.text_field :tag_list, value: @diary.tag_list.join(','), class: "form-control" %>
+        </div>
+      </div>
 
-  <h3>体重</h3>
-  <%= f.number_field :weight_record, min: 0 %>
-  <% end %>
+        <%= f.submit "食事記録を追加する", class: "btn btn-success" %>
 
-  <h3>活動量</h3>
-  <%= f.select :activity_status, Diary.activity_statuses.keys.to_a, prompt: "選択してください" %>
-
-  <h3>タグ</h3>
-  <%= f.text_field :tag_list, value: @diary.tag_list.join(',') %>
-
-  <%= f.submit "食事記録を作成する" %>
-
-<% end %>
-
+      <% end %>
+    </div>
+  </div>
+</div>
