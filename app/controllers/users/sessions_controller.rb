@@ -17,7 +17,7 @@ class Users::SessionsController < Devise::SessionsController
      time1 = Time.current.end_of_day.advance(hours: -9)
      # 同じハッシュ内に複数並べ条件を追加
      unless user.rewards.where(issue_reason: 1, created_at: time0..time1).exists?
-     Reward.sign_in_point(user)
+     Reward.give_point(user,1)
       # ランクステータ変更確認(ポイント取得後)
       user.change_rank(user.rewards.total_point)
      end

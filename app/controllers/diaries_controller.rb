@@ -20,12 +20,12 @@ class DiariesController < ApplicationController
       )
     if @diary.save
       # 日記作成ポイント付与
-      Reward.diary_point(user)
+      Reward.give_point(user,2)
       # body_weight作成
       if @body_weight.save
         # 目標体重達成ポイント付与
         if @body_weight.weight_record <= user.goal_weight
-          Reward.achieve_point(user)
+          Reward.give_point(user,5)
         end
         # ランクステータ変更確認(ポイント取得後)
         user.change_rank(user.rewards.total_point)

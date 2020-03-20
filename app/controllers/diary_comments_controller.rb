@@ -9,7 +9,7 @@ class DiaryCommentsController < ApplicationController
     @comment.user_id = user.id
     if @comment.save
        # コメントポイント付与
-       Reward.comment_point(user)
+       Reward.give_point(user,3)
        # ランクステータ変更確認(ポイント取得後)
        user.change_rank(user.rewards.total_point)
       render :index
