@@ -1,51 +1,83 @@
-<h1>会員情報編集画面</h1>
+<div class="form edit">
+  <div class="row">
+    <div class="col-xs-12 center">
+      <h1>会員情報編集画面</h1>
+      <%= form_with model: @user, local: true do |f| %>
+      <!-- エラーメッセージの部分テンプレート(f.objectで@userをmodelに渡す) -->
+      <%= render 'layouts/error_messages', model: f.object %>
 
-<%= form_with model: @user, local: true do |f| %>
-<!-- エラーメッセージの部分テンプレート(f.objectで@userをmodelに渡す) -->
-<%= render 'layouts/error_messages', model: f.object %>
+      <div class="form-group row">
+        <div class="col-xs-4 col-xs-offset-4">
+          <%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %>
+          <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
+        </div>
+      </div>
 
-    <div class="field">
-    <%= f.label :ユーザー名 %><br>
-    <%= f.text_field :name, autofocus:true, autocomplete: "name" %>
+      <div class="form-group row">
+        <div class="col-xs-4 col-xs-offset-4">
+          <%= f.label :ユーザー名 %><br>
+          <%= f.text_field :name, autofocus:true, autocomplete: "name", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-xs-2 col-xs-offset-5">
+          <%= f.label :性別 %><br>
+          <%= f.select :gender, User.genders.keys.to_a, prompt: "選択してください" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-xs-2 col-xs-offset-5">
+          <%= f.label :生年月日 %><br>
+          <!-- use_month_numbers（月の表示を数字で表示） -->
+          <%= f.date_select :birthday, start_year: 1930, end_year: Time.current.year, prompt: "--", use_month_numbers: true %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-xs-2 col-xs-offset-5">
+          <%= f.label :身長 %><br>
+          <%= f.number_field :height, min: 0, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-xs-2 col-xs-offset-5">
+          <%= f.label :目標体重 %><br>
+          <%= f.number_field :goal_weight, min: 0, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-xs-2 col-xs-offset-5">
+          <%= f.label :公開ステータス %><br>
+          <%= f.label :公開ステータス, :公開 %>
+          <%= f.radio_button :public_status, "公開", checked: true %>
+          <%= f.label :公開ステータス, :非公開 %>
+          <%= f.radio_button :public_status, "非公開" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-xs-4 col-xs-offset-4">
+          <%= f.label :メールアドレス %><br />
+          <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-xs-4 col-xs-offset-4">
+          <%= f.label :自己紹介 %><br />
+          <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "変更を保存する", class: "btn btn-success" %>
+      </div>
+
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :性別 %><br>
-    <%= f.select :gender, User.genders.keys.to_a, prompt: "選択してください" %>
-  </div>
-
-  <div>
-    <%= f.label :生年月日 %><br>
-    <!-- use_month_numbers（月の表示を数字で表示） -->
-    <%= f.date_select :birthday, start_year: 1930, end_year: Time.current.year, prompt: "--", use_month_numbers: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :身長 %><br>
-    <%= f.number_field :height, min: 0 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :目標体重 %><br>
-    <%= f.number_field :goal_weight, min: 0 %>
-  </div>
-
-  <div class="field">
-    <%= f.label :公開ステータス %><br>
-    <%= f.label :公開ステータス, :公開 %>
-    <%= f.radio_button :public_status, "公開", checked: true %>
-    <%= f.label :公開ステータス, :非公開 %>
-    <%= f.radio_button :public_status, "非公開" %>
-  </div>
-  <!-- 追加項目 -->
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "変更を保存する" %>
-  </div>
-
-<% end %>
+</div>
