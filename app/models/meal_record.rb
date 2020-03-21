@@ -11,6 +11,6 @@ class MealRecord < ApplicationRecord
   validates :intake_status, presence: true
 
   # enum機能の定義
-  enum intake_status: { その他: 0, 朝食: 1, 昼食: 2, 夕食: 3, 間食: 4 }
+  enum intake_status: { 朝食: 0, 昼食: 1, 夕食: 2, 間食: 3 }
 
 end

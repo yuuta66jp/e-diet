@@ -1,32 +1,63 @@
-<h1>edit</h1>
-<h2>食事記録</h2>
-<% @meal_records.each do |meal| %>
-  <p><%= meal.intake_status %></p>
-  <h4>タイトル</h4>
-    <p><%= meal.title %></p>
-  <h4>内容</h4>
-    <p><%= meal.body %></p>
-<%= link_to "編集", edit_meal_record_path(meal) %>
-<%= link_to "削除", meal_record_path(meal), method: :delete %>
-<% end %>
+<div class="form edit">
+  <div class="row">
+    <div class="col-xs-12 center">
+      <h1 class="diary">日記編集画面</h1>
+      <div class="row">
 
-<%= link_to "追加する", new_meal_record_path(id: @diary.id) %>
+        <div class="col-xs-5 col-xs-offset-1 title">
+          <h3>食事記録</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>タイミング</th>
+                <th>イメージ</th>
+                <th>タイトル</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @meal_records.each do |meal| %>
+              <tr>
+                <td><%= meal.intake_status %></td>
+                <td><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded", fallback: "no_image1.jpg" %></td>
+                <td><%= meal.title %></td>
+                <td><%= link_to "編集", edit_meal_record_path(meal), class: "btn btn-success" %></td>
+                <td><%= link_to "削除", meal_record_path(meal), method: :delete, class: "btn btn-danger" %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%= link_to "追加する", new_meal_record_path(id: @diary.id), class: "btn btn-warning" %>
+        </div>
 
-<%= form_with model: @diary, local: true do |f| %>
+        <div class="col-xs-5 col-xs-offset-1 edit_diary">
+          <%= form_with model: @diary, local: true do |f| %>
+          <%= f.fields_for @body_weight do |weight| %>
+          <div class="form-group row">
+            <div class="col-xs-4">
+              <%= weight.label :体重 %><br>
+              <%= weight.number_field :weight_record, min: 0, autocomplete: "weight_record", class: "form-control" %>
+            </div>
+          </div>
+          <% end %>
+          <div class="form-group row">
+            <div class="col-xs-4">
+              <%= f.label :活動量 %><br>
+              <%= f.select :activity_status, Diary.activity_statuses.keys.to_a, prompt: "選択してください", autocomplete: "activity_status", class: "form-control" %>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-xs-7">
+              <%= f.label :メモ %><br>
+              <%= f.text_area :remark, autocomplete: "remark", class: "form-control" %>
+            </div>
+          </div>
+          <%= f.submit "更新する", class: "btn btn-success" %>
+          <% end %>
+        </div>
 
-  <h3>メモ</h3>
-  <%= f.text_area :remark %>
-
-  <%= f.fields_for @body_weight do |weight| %>
-
-  <h3>体重</h3>
-  <%= weight.number_field :weight_record, min: 0 %>
-  <% end %>
-
-  <h3>活動量</h3>
-  <%= f.select :activity_status, Diary.activity_statuses.keys.to_a, prompt: "選択してください" %>
-
-  <%= f.submit "更新する" %>
-
-<% end %>
-
+      </div>
+    </div>
+  </div>
+</div>

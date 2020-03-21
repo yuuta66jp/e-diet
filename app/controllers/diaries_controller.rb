@@ -56,7 +56,7 @@ class DiariesController < ApplicationController
 
   def edit
     @diary = Diary.find(params[:id])
-    @meal_records = @diary.meal_records
+    @meal_records = @diary.meal_records.order(intake_status: :asc)
     # find_byメソッドによりdairy_idより取得
     @body_weight = BodyWeight.find_by(diary_id: params[:id])
   end
