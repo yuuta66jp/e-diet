@@ -5,7 +5,16 @@
     </div>
     <div class="col-xs-7">
       <h3><%= @user.name %></h3>
-        <h4><%= @user.rank_status %>ランク（<%= @user.rewards.total_point %>point）</h4>
+      <h4>
+        <% if @user.rank_status == "グリーン" %>
+          <i class="fas fa-medal green"></i>
+        <% elsif @user.rank_status == "シルバー" %>
+          <i class="fas fa-medal silver"></i>
+        <% else %>
+          <i class="fas fa-medal gold"></i>
+        <% end %>
+        <%= @user.rank_status %>ランク（<%= @user.rewards.total_point %>point）
+      </h4>
     </div>
   </div>
   <!-- 情報公開設定 -->
