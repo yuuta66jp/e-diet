@@ -1,11 +1,19 @@
-<% comments.each do |comment| %>
-  <a><%= link_to user_path(comment.diary.user) do %>
-    <%= attachment_image_tag comment.user, :profile_image, :fill, 50, 50, format: 'jpeg', fallback: "no_image.jpg", size: '50x50' %></a>
+<tbody>
+  <% comments.each do |comment| %>
+  <tr>
+    <td>
+      <%= link_to user_path(comment.diary.user) do %>
+      <%= attachment_image_tag comment.user, :profile_image, size: '50x50', format: 'jpeg' %>
+    </td>
     <% end %>
-  <a><%= comment.content %></a>
-  <% if comment.user == current_user %>
-  <!-- ルーティングをネストしているため引数が２つ(diary.id,comment.id)必要 -->
-  <!-- remote: trueにてJS形式でリクエストを送る -->
-  <a><%= link_to "削除", diary_diary_comment_path(comment.diary, comment), method: :delete, remote: true %></a>
+    <td><%= comment.content %></td>
+    <% if comment.user == current_user %>
+      <!-- ルーティングをネストしているため引数が２つ(diary.id,comment.id)必要 -->
+      <!-- remote: trueにてJS形式でリクエストを送る -->
+      <td>
+        <%= link_to "削除", diary_diary_comment_path(comment.diary, comment), method: :delete, class: "btn-sm btn-danger btn-sm", remote: true %>
+      </td>
+    <% end %>
+  </tr>
   <% end %>
-<% end %>
+</tbody>

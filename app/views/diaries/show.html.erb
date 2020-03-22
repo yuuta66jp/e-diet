@@ -1,38 +1,61 @@
-<h2>日付</h2>
-  <p><%= @diary.created_on %></p>
+<div class="form edit">
+  <div class="row">
+    <div class="col-xs-12 center">
+      <h1 class="diary"><%= @diary.created_on.strftime('%Y年%m月%d日') %></h1>
+      <div class="row">
+        <div class="col-xs-5 col-xs-offset-1 title">
+          <h3>食事記録</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>タイミング</th>
+                <th>イメージ</th>
+                <th>タイトル</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @meal_records.each do |meal| %>
+              <tr>
+                <td><%= meal.intake_status %></td>
+                <td><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded", fallback: "no_image1.jpg" %></td>
+                <td><%= meal.title %></td>
+                <td><%= link_to "詳細", meal_record_path(meal), class: "btn btn-success" %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
 
-<h2>食事記録</h2>
-<% @meal_records.each do |meal| %>
+        </div>
+        <div class="col-xs-5 col-xs-offset-1 edit_diary">
 
-  <p><%= meal.intake_status %></p>
 
-  <h4>タイトル</h4>
-    <p><%= meal.title %></p>
 
-  <h4>内容</h4>
-    <p><%= meal.body %></p>
+          <h3>メモ</h3>
+          <p><%= @diary.remark %></p>
 
-<% end %>
+          <h3>活動量</h3>
+          <p><%= @diary.activity_status %></p>
 
-<h2>メモ</h2>
-  <p><%= @diary.remark %></p>
+          <%= link_to "編集", edit_diary_path(@diary.id), class: "btn btn-success" %>
 
-<h2>活動量</h2>
-  <p><%= @diary.activity_status %></p>
+          <%= link_to "削除", diary_path(@diary), method: :delete, class: "btn btn-danger" %>
+        </div>
+                </div>
+        <div class="row">
+          <div class="col-xs-6 col-xs-offset-3 title">
+            <h3>コメント</h3>
+            <table id= "comments_area" class="table">
+              <!-- 投稿されたコメント一覧を表示するためのrender(部分テンプレート) -->
+              <%= render partial: 'diary_comments/index', locals: { comments: @comments } %>
+            </table>
+            <% if user_signed_in? %>
+            <!-- コメント入力欄を表示するためのrender(部分テンプレート) -->
+            <%= render partial: 'diary_comments/form', locals: { diary: @diary, comment: @comment } %>
+            <% end %>
+          </div>
 
-<%= link_to "編集", edit_diary_path(@diary.id) %>
-
-<%= link_to "削除", diary_path(@diary), method: :delete %>
-
-<div>
-  <h2>コメント</h2>
-  <div id= "comments_area">
-    <!-- 投稿されたコメント一覧を表示するためのrender(部分テンプレート) -->
-    <%= render partial: 'diary_comments/index', locals: { comments: @comments } %>
+      </div>
+    </div>
   </div>
-  <% if user_signed_in? %>
-    <!-- コメント入力欄を表示するためのrender(部分テンプレート) -->
-    <%= render partial: 'diary_comments/form', locals: { diary: @diary, comment: @comment } %>
-  <% end %>
 </div>
-

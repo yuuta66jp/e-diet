@@ -1,6 +1,6 @@
 class MealRecordsController < ApplicationController
   # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def new
     @meal_record = MealRecord.new
@@ -21,6 +21,10 @@ class MealRecordsController < ApplicationController
   end
 
   def edit
+    @meal_record =MealRecord.find(params[:id])
+  end
+
+  def show
     @meal_record =MealRecord.find(params[:id])
   end
 

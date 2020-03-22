@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     resources :diary_comments, except: [:new, :index]
   end
 
-  resources :meal_records, except: [:index, :show]
+  resources :meal_records, except: [:index]
   resources :rewards,        only: :index
   resources :topics,         only: [:index, :show]
 
