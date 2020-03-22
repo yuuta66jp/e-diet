@@ -25,7 +25,7 @@
       <%= line_chart [
         {name: @user.name, data: @user_data},
         {name: "自分", data: @self_data},
-      ] %>
+      ], discrete: true %>
     </div>
   </div>
   <!-- 非公開 -->

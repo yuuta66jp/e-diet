@@ -55,7 +55,7 @@
   <% end %>
     <!-- メッセージの表示 -->
     <% if notice %>
-      <p class="alert"><%= notice %></p>
+      <p class="alert"><%= notice.html_safe %></p>
     <% end %>
     <% if alert %>
       <p class="alert"><%= alert %></p>

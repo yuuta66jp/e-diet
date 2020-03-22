@@ -16,6 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
          # sign_up時のポイント機能
          Reward.give_point(current_user,0)
         end
+        flash[:notice] = '新規登録が完了しました！<br>新規登録ポイント(50point)取得しました！'
    end
 
   # GET /resource/edit

@@ -25,12 +25,12 @@ class DiariesController < ApplicationController
       if @body_weight.save
         # 目標体重達成ポイント付与
         if @body_weight.weight_record <= user.goal_weight
-          Reward.give_point(user,5)
+          Reward.give_point(user,4)
         end
         # ランクステータ変更確認(ポイント取得後)
         user.change_rank(user.rewards.total_point)
         # createで新規食事記録画面へ遷移（パラメーターをredirect_toに直接渡す）
-        redirect_to new_meal_record_path(id: @diary.id), notice: '引き続き食事記録を追加してください'
+        redirect_to new_meal_record_path(id: @diary.id), notice: '日記作成ポイント(10point)獲得しました！<br>引き続き食事記録を追加してください'
       else #if文でエラー時の分岐表示
         @meal_records = @diary.meal_records
         flash.now[:alert] = '体重を入力してください'

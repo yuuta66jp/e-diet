@@ -16,9 +16,10 @@ class RelationshipsController < ApplicationController
     user = current_user
     user.follow(params[:user_id])
     # フォローポイント付与
-    Reward.give_point(user,4)
+    Reward.give_point(user,3)
     # ランクステータ変更確認(ポイント取得後)
     user.change_rank(user.rewards.total_point)
+    flash[:notice] = 'フォローポイント(10point)獲得しました！'
     redirect_back(fallback_location: root_path)
   end
 
@@ -26,7 +27,7 @@ class RelationshipsController < ApplicationController
     user = current_user
     user.unfollow(params[:user_id])
     # フォロー解除時にポイント削除
-    follow_point = user.rewards.find_by(issue_reason: 4)
+    follow_point = user.rewards.find_by(issue_reason: 3)
     follow_point.destroy
     # ランクステータ変更確認(ポイント変更後)
     user.change_rank(user.rewards.total_point)
