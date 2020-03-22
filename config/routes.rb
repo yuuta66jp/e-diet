@@ -12,10 +12,11 @@ Rails.application.routes.draw do
   get 'home/about', to: 'home#about'
   # namespaceを使い指定のパス(admin)にする
   namespace :admins do
-    resources :users, except: [:new, :create]
-    resources :diaries, only: [:index, :show, :destroy]
-    resources :rewards, only: [:index, :destroy]
-    resources :genres,  only: [:index, :create, :edit, :update]
+    resources :users,        except: [:new, :create]
+    resources :diaries,      only: [:index, :show, :destroy]
+    resources :meal_records, only: [:show]
+    resources :rewards,      only: [:index, :destroy]
+    resources :genres,       only: [:index, :create, :edit, :update]
     resources :topics
   end
   # ルーティングをネストする

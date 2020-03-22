@@ -8,7 +8,7 @@ class Admins::TopicsController < ApplicationController
   def create
     @topic = Topic.new(topic_prams)
     if @topic.save
-      redirect_to admins_topic_path(@topic), notice: 'トピックスが作成されました！'
+      redirect_to admins_topic_path(@topic), notice: 'トピックスが作成されました'
     else #if文でエラー時の分岐表示
       render :new
     end
@@ -29,7 +29,7 @@ class Admins::TopicsController < ApplicationController
   def update
     @topic = Topic.find(params[:id])
     if @topic.update(topic_prams)
-      redirect_to admins_topic_path(@topic), notice: '更新が成功しました！'
+      redirect_to admins_topic_path(@topic), notice: '更新しました'
     else #if文でエラー時の分岐表示
       render :edit
     end

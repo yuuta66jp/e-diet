@@ -30,10 +30,9 @@
           <!-- admin -->
           <% elsif admin_signed_in? %>
             <li class= "nav-item">管理者</li>
-            <li class= "nav-item"><%= link_to "users", admins_users_path %></li>
             <li class= "nav-item"><%= link_to "topics", admins_topics_path %></li>
+            <li class= "nav-item"><%= link_to "users", admins_users_path %></li>
             <li class= "nav-item"><%= link_to "diaries", admins_diaries_path %></li>
-            <li class= "nav-item"><%= link_to "ポイント取得一覧", admins_rewards_path(index: "all") %></li>
             <li class= "nav-item"><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
           <!-- gest -->
           <% else %>
@@ -50,7 +49,7 @@
   <% if user_signed_in? %>
     <div class="main container">
   <% elsif admin_signed_in? %>
-    <div class="container">
+    <div class="admin container">
   <% else %>
     <div class="login container">
   <% end %>

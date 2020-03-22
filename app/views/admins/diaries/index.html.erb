@@ -1,13 +1,27 @@
-<h1>index</h1>
-
-<% @diaries.each do |diary| %>
-  <p>メモ</p>
-  <span><%= link_to diary.remark, admins_diary_path(diary) %></span>
-
-  <p>活動量</p>
-  <span><%= diary.activity_status %></span>
-
-  <p>タグ</p>
-  <%= render "diaries/tag_list", tag_list: diary.tag_list %>
-
-<% end %>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>日記一覧</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>会員名</th>
+          <th>日付</th>
+          <th>タグ</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @diaries.each do |diary| %>
+        <tr>
+          <th><%= diary.id %></th>
+          <td><%= diary.user.name %></td>
+          <td><%= diary.created_on.strftime("%Y-%m-%d") %></td>
+          <td><%= render "diaries/tag_list", tag_list: diary.tag_list %></td>
+          <td><%= link_to "詳細", admins_diary_path(diary), class: "btn btn-info" %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

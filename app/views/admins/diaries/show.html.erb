@@ -1,24 +1,48 @@
-<h2>日付</h2>
-  <p><%= @diary.created_on %></p>
-
-<h2>食事記録</h2>
-<% @meal_records.each do |meal| %>
-
-  <p><%= meal.intake_status %></p>
-
-  <h4>タイトル</h4>
-    <p><%= meal.title %></p>
-
-  <h4>内容</h4>
-    <p><%= meal.body %></p>
-
-<% end %>
-
-<h2>メモ</h2>
-  <p><%= @diary.remark %></p>
-
-<h2>活動量</h2>
-  <p><%= @diary.activity_status %></p>
-
-
-<%= link_to "削除", admins_diary_path(@diary), method: :delete %>
+<div class="form edit">
+  <div class="row">
+    <div class="col-xs-12 center">
+      <h1 class="diary"><%= @diary.created_on.strftime('%Y年%m月%d日') %></h1>
+      <div class="row">
+        <div class="col-xs-5 col-xs-offset-1 title">
+          <h3>食事記録</h3>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>タイミング</th>
+                <th>イメージ</th>
+                <th>タイトル</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @meal_records.each do |meal| %>
+              <tr>
+                <td><%= meal.intake_status %></td>
+                <td><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded", fallback: "no_image1.jpg" %></td>
+                <td><%= meal.title %></td>
+                <td><%= link_to "詳細", admins_meal_record_path(meal), class: "btn btn-success" %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-xs-5 col-xs-offset-1 edit_diary">
+          <h3>メモ</h3>
+          <p><%= @diary.remark %></p>
+          <h3>活動量</h3>
+          <p><%= @diary.activity_status %></p>
+          <%= link_to "削除", admins_diary_path(@diary), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3 title">
+          <h3>コメント</h3>
+          <table id= "comments_area" class="table">
+            <!-- 投稿されたコメント一覧を表示するためのrender(部分テンプレート) -->
+            <%= render partial: 'diary_comments/index', locals: { comments: @comments } %>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

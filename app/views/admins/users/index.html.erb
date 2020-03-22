@@ -1,10 +1,28 @@
-<h1>ユーザー一覧</h1>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>会員一覧</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>登録日時</th>
+          <th>名前</th>
+          <th>ランク(ポイント)</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+        <tr>
+          <th><%= user.id %></th>
+          <td><%= user.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= user.name %></td>
+          <td><%= user.rank_status %>（<%= user.rewards.total_point %>point）</td>
+          <td><%= link_to "編集", admins_user_path(user), class: "btn btn-success" %></td>
+        </tr>
+            <% end %>
+      </tbody>
+          </table>
+        </div>
+      </div>
 
-<% @users.each do |user| %>
-  <%= attachment_image_tag user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>
-  <h4>ユーザー名</h4>
-    <p><%= user.name %></p>
-  <h4>ランク</h4>
-    <p><%= user.rank_status %></p>
-    <p><%= link_to "show", admins_user_path(user) %></p>
-<% end %>

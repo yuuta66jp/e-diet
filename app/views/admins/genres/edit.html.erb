@@ -1,12 +1,24 @@
-<h3>ジャンル編集画面</h3>
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <h2 class="center">ジャンル編集画面</h2>
+    <%= form_with model: @genre, url: admins_genre_path, local: true do |f| %>
+    <!-- エラーメッセージの部分テンプレート(f.objectで@genreをmodelに渡す) -->
+    <%= render 'layouts/error_messages', model: f.object %>
+    <form class="form">
+      <div class="row">
+        <div class="col-xs-4">
+          <%= f.label :ジャンル名 %>
+          <%= f.text_field :name, autofocus:true, autocomplete: "name", class: "form-control" %>
+        </div>
+      </div>
+      <div class="radio">
+        <label><%= f.radio_button :is_active, "true"%>有効</label>
+        <label><%= f.radio_button :is_active, "false" %>無効</label>
+      </div>
+      <%= f.submit "変更", class: "btn btn-success" %>
+    </form>
+    <% end %>
+  </div>
+</div>
 
-<%= form_with model: @genre, url: admins_genre_path, local: true do |f| %>
-<!-- エラーメッセージの部分テンプレート(f.objectで@genreをmodelに渡す) -->
-<%= render 'layouts/error_messages', model: f.object %>
-  <span>ジャンル
-    <%= f.text_field :name %>
-    <label><%=f.radio_button :is_active, "true"%>有効</label>
-    <label><%=f.radio_button :is_active, "false"%>無効</label>
-    <%= f.submit "変更を保存する" %>
-  </span>
-<% end %>
+

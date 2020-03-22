@@ -1,0 +1,41 @@
+<div class="icon">
+  <%= link_to new_diary_path do %>
+  <i class="fas fa-plus-circle fa-4x"></i>
+  <% end %>
+</div>
+<div class="row">
+  <% users.each do |user| %>
+  <div class="col-xs-3">
+    <div class="user-index">
+      <%= link_to user_path(user) do %>
+        <%= attachment_image_tag user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %><br>
+        <%= user.name %>
+      <% end %>
+        <p>フォロー：<%= link_to user.follower.count, user_relationships_path(user_id: user.id, index: "follower") %></p>
+        <p>フォロワー：<%= link_to user.followed.count, user_relationships_path(user_id: user.id, index: "followed") %></p>
+        </p>
+        <p><%= user.rank_status %>（<%= user.rewards.total_point %>point）</p>
+        <% if user.public_status == "公開" %>
+          <p>身長<%= user.height %>cm</p>
+            <!-- ここに最新の体重を表示したい -->
+          <p>目標体重<%= user.goal_weight %>kg</p>
+        <% else %>
+          <p>身長：非公開</p>
+          <p>目標体重：非公開</p>
+        <% end %>
+        <p>日記投稿数：<%= link_to user.diaries.count, diaries_path %>件</p>
+        <% if current_user != user %>
+          <% if current_user.following?(user) %>
+            <%= link_to "フォローを外す", user_relationships_path(user.id), { method: :delete, class: "btn btn-danger" } %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(user.id), { method: :POST, class: "btn btn-success" } %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+  <% end %>
+</div>
+<div class="page">
+  <%= paginate users, class: "paginate" %>
+</div>
+

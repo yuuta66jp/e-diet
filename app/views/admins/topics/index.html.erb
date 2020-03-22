@@ -1,14 +1,44 @@
-<h2>トピックス一覧</h2>
-
-  <%= link_to "新規作成", new_admins_topic_path %>
-
-<% @topics.each do |topic| %>
-  <h4>タイトル</h4>
-  <%= link_to topic.title,  admins_topic_path(topic) %>
-  <h4>内容</h4>
-  <%= topic.body %>
-  <h4>ジャンル名</h4>
-  <%= topic.genre.name %>
-  <%= link_to "編集", edit_admins_topic_path(topic) %>
-
-<% end %>
+<div class="icon">
+  <%= link_to admins_genres_path do %>
+  <i class="fas fa-plus-circle fa-4x genre"></i>
+  <% end %>
+  <%= link_to new_admins_topic_path do %>
+  <i class="fas fa-plus-circle fa-4x topic"></i>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>トピックス一覧</h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th></th>
+          <th>投稿日</th>
+          <th>タイトル</th>
+          <th>ジャンル</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @topics.each do |topic| %>
+        <tr>
+          <td>
+            <%= link_to admins_topic_path(topic) do %>
+            <%= attachment_image_tag topic, :topic_image, size: "120x120", class: "img-rounded", fallback: "no_image1.jpg" %>
+            <% end %>
+          </td>
+          <td><%= topic.created_at.strftime('%Y/%m/%d') %></td>
+          <td>
+            <%= link_to admins_topic_path(topic) do %>
+            <%= topic.title %>
+            <% end %>
+          </td>
+          <td><%= topic.genre.name %></td>
+          <td><%= link_to "編集", edit_admins_topic_path(topic), class: "btn btn-success" %>
+            <%= link_to "削除", admins_topic_path(topic), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

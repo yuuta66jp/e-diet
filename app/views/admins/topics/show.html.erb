@@ -1,14 +1,16 @@
-<h1>show</h1>
-
-  <h4>タイトル</h4>
-    <%= attachment_image_tag @topic, :topic_image, :fill, 50, 50, fallback: "no_image.jpg" %>
-    <p><%= @topic.title %></p>
-  <h4>内容</h4>
-    <p><%= @topic.body %></p>
-  <h4>ジャンル</h4>
-    <p><%= @topic.genre.name %></p>
-
-    <p><%= link_to "編集", edit_admins_topic_path(@topic) %></p>
-    <p><%= link_to "削除", admins_topic_path(@topic), method: :delete, data: { confirm: "本当に削除しますか？" } %></p>
-
-
+<div class="form edit">
+  <div class="row">
+    <div class="col-xs-12 center">
+      <div class="col-xs-4 col-xs-offset-2">
+        <%= attachment_image_tag @topic, :topic_image, size: "150x150", class: "img-rounded", fallback: "no_image1.jpg" %>
+      </div>
+      <div class="col-xs-4 title">
+        <h3>タイトル</h3>
+        <p><%= @topic.title %></p>
+        <p><%= @topic.genre.name %></p>
+        <h3>内容</h3>
+        <p><%= @topic.body %></p>
+      </div>
+    </div>
+  </div>
+</div>

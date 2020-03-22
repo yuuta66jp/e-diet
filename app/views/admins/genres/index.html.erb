@@ -1,19 +1,40 @@
-<h2>ジャンル一覧画面</h2>
-
-<%= form_with model: @genre, url: admins_genres_path, local: true do |f| %>
-<!-- エラーメッセージの部分テンプレート(f.objectで@genreをmodelに渡す) -->
-<%= render 'layouts/error_messages', model: f.object %>
-  <span>ジャンル
-    <%= f.text_field :name %>
-    <label><%= f.radio_button :is_active, "true" %>有効</label>
-    <label><%= f.radio_button :is_active, "false" %>無効</label>
-    <%= f.submit "追加" %>
-  </span>
-<% end %>
-
-<% @genres.each do |genre| %>
-  <p>ジャンル名<p>
-    <%= genre.name %>
-  <p><%= genre.is_active ? "有効" : "無効" %>
-  <%= link_to "編集", edit_admins_genre_path(genre) %>
-<% end %>
+<div class="row">
+  <div class="col-xs-6 col-xs-offset-3">
+    <h2 class="center">ジャンル管理画面</h2>
+    <%= form_with model: @genre, url: admins_genres_path, local: true do |f| %>
+    <!-- エラーメッセージの部分テンプレート(f.objectで@genreをmodelに渡す) -->
+    <%= render 'layouts/error_messages', model: f.object %>
+    <form class="form">
+      <div class="row">
+        <div class="col-xs-4">
+          <%= f.label :ジャンル名 %>
+          <%= f.text_field :name, autofocus:true, autocomplete: "name", class: "form-control" %>
+        </div>
+      </div>
+      <div class="radio">
+        <label><%= f.radio_button :is_active, "true"%>有効</label>
+        <label><%= f.radio_button :is_active, "false" %>無効</label>
+      </div>
+      <%= f.submit "追加", class: "btn btn-success" %>
+    </form>
+    <% end %>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th></th>
+          <th>ジャンル名</th>
+          <th>ステータス</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+    <% @genres.each do |genre| %>
+        <tr>
+          <th><%= genre.id %></th>
+          <td><%= genre.name %></td>
+          <td><%= genre.is_active ? "有効" : "無効" %></td>
+          <td><%= link_to "編集", edit_admins_genre_path(genre), class: "btn btn-success" %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>

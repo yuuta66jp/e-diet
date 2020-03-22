@@ -53,6 +53,10 @@ header {
   background-color: rgba(255,255,255,0.9);
 }
 
+.admin {
+  background-color: rgba(255,255,255,1);
+}
+
 .login {
   background-color: rgba(255,255,255,0.7);
   padding: 30px 30px;
@@ -126,8 +130,12 @@ header {
   color: #228b22;
 }
 
-.fa-plus-circle:before {
+.fa-plus-circle.topic:before {
   color: #3cb371;
+}
+
+.fa-plus-circle.genre:before {
+  color: #ffa500;
 }
 
 .green {

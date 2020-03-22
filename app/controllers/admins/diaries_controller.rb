@@ -10,6 +10,7 @@ class Admins::DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
     # @diaryに紐づいたmeal_recordsを取得
     @meal_records = @diary.meal_records
+    @comments = @diary.diary_comments
   end
 
   def destroy
