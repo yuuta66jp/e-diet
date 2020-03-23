@@ -1,110 +1,114 @@
-<div class="profile">
-  <div class="row">
-    <div class="col-xs-2 col-xs-offset-3">
-      <%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %>
-    </div>
-    <div class="col-xs-7">
-      <h3><%= @user.name %></h3>
-      <h4>
-        <% if @user.rank_status == "グリーン" %>
-          <i class="fas fa-medal green"></i>
-        <% elsif @user.rank_status == "シルバー" %>
-          <i class="fas fa-medal silver"></i>
-        <% else %>
-          <i class="fas fa-medal gold"></i>
-        <% end %>
-        <%= @user.rank_status %>ランク（<%= @user.rewards.total_point %>point）
-      </h4>
-    </div>
-  </div>
-  <!-- 情報公開設定 -->
-  <% if @user.public_status == "公開" %>
-  <div class="row">
-    <div class="col-xs-12">
-      <!-- チャート表示 -->
-      <%= line_chart [
-        {name: @user.name, data: @user_data},
-        {name: "自分", data: @self_data},
-      ], discrete: true %>
-    </div>
-  </div>
-  <!-- 非公開 -->
-  <% else %>
-  <div class="row">
-    <div class="col-xs-12 box">
-      <div class="box-text">
-        非公開
+<div class="main container">
+  <div class="profile">
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-3">
+        <%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %>
+      </div>
+      <div class="col-xs-7">
+        <h3><%= @user.name %></h3>
+          <h4>
+            <% if @user.rank_status == "グリーン" %>
+              <i class="fas fa-medal green"></i>
+            <% elsif @user.rank_status == "シルバー" %>
+              <i class="fas fa-medal silver"></i>
+            <% else %>
+              <i class="fas fa-medal gold"></i>
+            <% end %>
+            <%= @user.rank_status %>ランク（<%= @user.rewards.total_point %>point）
+          </h4>
       </div>
     </div>
-  </div>
-  <% end %>
-  <!-- 情報公開設定 -->
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-2">
-      <h3>詳細情報</h3>
-      <table class="table ">
-        <tbody>
-          <tr>
-            <th>ユーザー名</th>
-            <td><%= @user.name %>（日記投稿数：<%= link_to @user.diaries.count, diaries_path %>件）</td>
-          </tr>
-          <tr>
-            <th>ランク</th>
-            <td><%= @user.rank_status %>ランク（<%= @user.rewards.total_point %>point）</td>
-          </tr>
-          <!-- 情報公開設定 -->
-          <% if @user.public_status == "公開" %>
-          <tr>
-            <th>性別</th>
-            <td><%= @user.gender %></td>
-          </tr>
-          <tr>
-            <th>生年月日</th>
-            <td><%= @user.birthday.strftime('%Y年%m月%d日') %></td>
-          </tr>
-          <tr>
-            <th>身長</th>
-            <td><%= @user.height %>cm</td>
-          </tr>
-          <tr>
-            <th>目標体重</th>
-            <td><%= @user.goal_weight %>kg</td>
-          </tr>
-          <!-- 非公開 -->
+    <!-- 情報公開設定 -->
+    <% if @user.public_status == "公開" %>
+      <div class="row">
+        <div class="col-xs-12">
+          <!-- チャート表示 -->
+          <% if user_signed_in? %>
+            <%= line_chart [
+              {name: @user.name, data: @user_data},
+              {name: "自分", data: @self_data},
+              ], discrete: true %>
           <% else %>
-          <tr>
-            <th>性別</th>
-            <td>非公開</td>
-          </tr>
-          <tr>
-            <th>生年月日</th>
-            <td>非公開</td>
-          </tr>
-          <tr>
-            <th>身長</th>
-            <td>非公開</td>
-          </tr>
-          <tr>
-            <th>目標体重</th>
-            <td>非公開</td>
-          </tr>
+            <%= line_chart name: @user.name, data: @user_data, discrete: true %>
           <% end %>
-          <!-- 情報公開設定 -->
-          <tr>
-            <th>自己紹介</th>
-            <td><%= @user.introduction %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+        </div>
+      </div>
+      <!-- 非公開 -->
+      <% else %>
+        <div class="row">
+          <div class="col-xs-12 box">
+            <div class="box-text">非公開</div>
+          </div>
+        </div>
+      <% end %>
+      <!-- 情報公開設定 -->
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <h3>詳細情報</h3>
+          <table class="table ">
+            <tbody>
+              <tr>
+                <th>ユーザー名</th>
+                <td><%= @user.name %>（日記投稿数：<%= link_to @user.diaries.count, diaries_path %>件）</td>
+              </tr>
+              <tr>
+                <th>ランク</th>
+                <td><%= @user.rank_status %>ランク（<%= @user.rewards.total_point %>point）</td>
+              </tr>
+              <!-- 情報公開設定 -->
+              <% if @user.public_status == "公開" %>
+                <tr>
+                  <th>性別</th>
+                  <td><%= @user.gender %></td>
+                </tr>
+                <tr>
+                  <th>生年月日</th>
+                  <td><%= @user.birthday.strftime('%Y年%m月%d日') %></td>
+                </tr>
+                <tr>
+                  <th>身長</th>
+                  <td><%= @user.height %>cm</td>
+                </tr>
+                <tr>
+                  <th>目標体重</th>
+                  <td><%= @user.goal_weight %>kg</td>
+                </tr>
+              <!-- 非公開 -->
+              <% else %>
+                <tr>
+                  <th>性別</th>
+                  <td>非公開</td>
+                </tr>
+                <tr>
+                  <th>生年月日</th>
+                  <td>非公開</td>
+                </tr>
+                <tr>
+                  <th>身長</th>
+                  <td>非公開</td>
+                </tr>
+                <tr>
+                  <th>目標体重</th>
+                  <td>非公開</td>
+                </tr>
+              <% end %>
+              <!-- 情報公開設定 -->
+              <tr>
+                <th>自己紹介</th>
+                <td><%= @user.introduction %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <% if @user.id == current_user.id %>
+        <div class="row">
+          <div class="col-xs-8 col-xs-offset-4">
+            <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %>
+            <%= link_to "退会する", congfirm_path, class: "btn btn-danger" %>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
   </div>
-
-  <% if @user.id == current_user.id %>
-  <div class="row">
-    <div class="col-xs-8 col-xs-offset-4">
-      <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %>
-      <%= link_to "退会する", congfirm_path, class: "btn btn-danger" %>
-    </div>
-  </div>
-  <% end %>
-</div>

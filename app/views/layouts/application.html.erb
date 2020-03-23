@@ -36,8 +36,10 @@
             <li class= "nav-item"><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
           <!-- gest -->
           <% else %>
-            <li class= "nav-item"><%= link_to "home", root_path %></li>
             <li class= "nav-item"><%= link_to "about", home_about_path %></li>
+            <li class= "nav-item"><%= link_to "topics", topics_path %></li>
+            <li class= "nav-item"><%= link_to "users", users_path %></li>
+            <li class= "nav-item"><%= link_to "diaries", root_path %></li>
             <li class= "nav-item"><%= link_to "signup", new_user_registration_path %></li>
             <li class= "nav-item"><%= link_to "login", new_user_session_path %></li>
           <% end %>
@@ -46,10 +48,10 @@
     </div>
   </header>
   <!-- userによりデザインを分岐表示 -->
-  <% if user_signed_in? %>
-    <div class="main container">
-  <% elsif admin_signed_in? %>
+  <% if admin_signed_in? %>
     <div class="admin container">
+  <% else %>
+    <div class="container">
   <% end %>
     <!-- メッセージの表示 -->
     <% if notice %>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # ルート設定
-  root 'home#top'
+  root 'diaries#index'
   # aboutページ設定
   get 'home/about', to: 'home#about'
   # namespaceを使い指定のパス(admin)にする
@@ -17,7 +17,6 @@ Rails.application.routes.draw do
     resources :users,        except: [:new, :create]
     resources :diaries,      only: [:index, :show, :destroy]
     resources :meal_records, only: [:show]
-    resources :rewards,      only: [:index, :destroy]
     resources :genres,       only: [:index, :create, :edit, :update]
     resources :topics
   end
@@ -35,7 +34,6 @@ Rails.application.routes.draw do
   end
 
   resources :meal_records, except: [:index]
-  resources :rewards,        only: :index
   resources :topics,         only: [:index, :show]
 
 end

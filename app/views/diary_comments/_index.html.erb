@@ -7,12 +7,14 @@
     </td>
     <% end %>
     <td><%= comment.content %></td>
-    <% if comment.user == current_user %>
-      <!-- ルーティングをネストしているため引数が２つ(diary.id,comment.id)必要 -->
-      <!-- remote: trueにてJS形式でリクエストを送る -->
-      <td>
-        <%= link_to "削除", diary_diary_comment_path(comment.diary, comment), method: :delete, class: "btn-sm btn-danger btn-sm", remote: true %>
-      </td>
+    <% if user_signed_in? %>
+      <% if comment.user == current_user %>
+        <td>
+          <!-- ルーティングをネストしているため引数が２つ(diary.id,comment.id)必要 -->
+          <!-- remote: trueにてJS形式でリクエストを送る -->
+          <%= link_to "削除", diary_diary_comment_path(comment.diary, comment), method: :delete, class: "btn-sm btn-danger btn-sm", remote: true %>
+        </td>
+      <% end %>
     <% end %>
   </tr>
   <% end %>

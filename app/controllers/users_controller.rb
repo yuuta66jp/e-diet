@@ -11,7 +11,9 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     # グラフ用体重データ取得(pluckによりカラムの配列を取得)(to_hメソッドにより配列をハッシュに変換)
     @user_data = @user.diaries.joins(:body_weight).pluck('diaries.created_on', 'body_weights.weight_record').to_h
-    @self_data = current_user.diaries.joins(:body_weight).pluck('diaries.created_on', 'body_weights.weight_record').to_h
+    if user_signed_in?
+      @self_data = current_user.diaries.joins(:body_weight).pluck('diaries.created_on', 'body_weights.weight_record').to_h
+    end
 
   end
 

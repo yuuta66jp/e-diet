@@ -1,47 +1,47 @@
-<div class="form edit">
-  <div class="row">
-    <div class="col-xs-12 center">
-      <h1 class="diary"><%= @diary.created_on.strftime('%Y年%m月%d日') %></h1>
-      <div class="row">
-        <div class="col-xs-5 col-xs-offset-1 title">
-          <h3>食事記録</h3>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>タイミング</th>
-                <th>イメージ</th>
-                <th>タイトル</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @meal_records.each do |meal| %>
-              <tr>
-                <td><%= meal.intake_status %></td>
-                <td><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded", fallback: "no_image1.jpg" %></td>
-                <td><%= meal.title %></td>
-                <td><%= link_to "詳細", meal_record_path(meal), class: "btn btn-success" %></td>
-              </tr>
+<div class="main container">
+  <div class="form edit">
+    <div class="row">
+      <div class="col-xs-12 center">
+        <h1 class="diary"><%= @diary.created_on.strftime('%Y年%m月%d日') %></h1>
+        <div class="row">
+          <div class="col-xs-5 col-xs-offset-1 title">
+            <h3>食事記録</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>タイミング</th>
+                  <th>イメージ</th>
+                  <th>タイトル</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @meal_records.each do |meal| %>
+                <tr>
+                  <td><%= meal.intake_status %></td>
+                  <td><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded", fallback: "no_image1.jpg" %></td>
+                  <td><%= meal.title %></td>
+                  <td><%= link_to "詳細", meal_record_path(meal), class: "btn btn-success" %></td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="col-xs-5 col-xs-offset-1 edit_diary">
+            <h3>メモ</h3>
+              <p><%= @diary.remark %></p>
+
+            <h3>活動量</h3>
+              <p><%= @diary.activity_status %></p>
+            <% if user_signed_in? %>
+              <% if @diary.user.id == current_user.id %>
+                <%= link_to "編集", edit_diary_path(@diary.id), class: "btn btn-success" %>
+                <%= link_to "削除", diary_path(@diary), method: :delete, class: "btn btn-danger" %>
               <% end %>
-            </tbody>
-          </table>
-
+            <% end %>
+          </div>
         </div>
-        <div class="col-xs-5 col-xs-offset-1 edit_diary">
-
-
-
-          <h3>メモ</h3>
-          <p><%= @diary.remark %></p>
-
-          <h3>活動量</h3>
-          <p><%= @diary.activity_status %></p>
-
-          <%= link_to "編集", edit_diary_path(@diary.id), class: "btn btn-success" %>
-
-          <%= link_to "削除", diary_path(@diary), method: :delete, class: "btn btn-danger" %>
-        </div>
-                </div>
         <div class="row">
           <div class="col-xs-6 col-xs-offset-3 title">
             <h3>コメント</h3>
@@ -50,12 +50,12 @@
               <%= render partial: 'diary_comments/index', locals: { comments: @comments } %>
             </table>
             <% if user_signed_in? %>
-            <!-- コメント入力欄を表示するためのrender(部分テンプレート) -->
-            <%= render partial: 'diary_comments/form', locals: { diary: @diary, comment: @comment } %>
+              <!-- コメント入力欄を表示するためのrender(部分テンプレート) -->
+              <%= render partial: 'diary_comments/form', locals: { diary: @diary, comment: @comment } %>
             <% end %>
           </div>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
