@@ -49,7 +49,7 @@
             <tbody>
               <tr>
                 <th>ユーザー名</th>
-                <td><%= @user.name %>（日記投稿数：<%= link_to @user.diaries.count, diaries_path %>件）</td>
+                <td><%= @user.name %>（日記投稿数：<%= link_to @user.diaries.count, diaries_path(index: "user", id: @user.id) %>件）</td>
               </tr>
               <tr>
                 <th>ランク</th>

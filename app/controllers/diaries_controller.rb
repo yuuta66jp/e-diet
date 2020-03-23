@@ -42,7 +42,14 @@ class DiariesController < ApplicationController
   end
 
   def index
-    @diaries = Diary.page(params[:page]).reverse_order
+    # 遷移元のリンクにより表示を分岐する
+    case params[:index]
+    when "all"
+      @diaries = Diary.page(params[:page]).reverse_order
+    when "user"
+      @user = User.find(params[:id])
+      @diaries = @user.diaries.page(params[:page]).reverse_order
+    end
   end
 
   def show

@@ -24,7 +24,7 @@
         <p>身長：非公開</p>
         <p>目標体重：非公開</p>
       <% end %>
-      <p>日記投稿数：<%= link_to user.diaries.count, diaries_path %>件</p>
+      <p>日記投稿数：<%= link_to user.diaries.count, diaries_path(index: "user", id: user.id) %>件</p>
       <% if user_signed_in? %>
         <% if current_user != user %>
           <% if current_user.following?(user) %>
