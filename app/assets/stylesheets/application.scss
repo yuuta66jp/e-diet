@@ -67,7 +67,7 @@ header {
   border-radius: 10px;
   max-width: 450px;
   margin: auto;
-  margin-top: 180px;
+  margin-top: 130px;
 }
 
 .center {
@@ -162,4 +162,18 @@ header {
   background-color: rgba(255,255,255,0.9);
   border-radius: 0px;
   border: 0px;
+}
+
+.marker_yellow {
+background: linear-gradient(transparent 60%, #ffff66 60%);
+}
+
+.about {
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+
+.topic {
+  margin-bottom: 30px;
 }

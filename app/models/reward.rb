@@ -11,7 +11,7 @@ class Reward < ApplicationRecord
   # enum機能の定義
   enum issue_reason: { 新規登録: 0, ログイン: 1, 日記投稿:2, フォロー: 3, 目標達成: 4 }
   # point(定数)の定義
-  Point = [50, 5, 10, 10, 100]
+  Point = [30, 5, 10, 10, 100]
 
   # 取得ポイントの合計値を計算
   def self.total_point
