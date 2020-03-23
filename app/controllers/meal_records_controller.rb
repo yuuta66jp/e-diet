@@ -1,6 +1,7 @@
 class MealRecordsController < ApplicationController
   # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
   before_action :authenticate_user!, except: [:show]
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     @meal_record = MealRecord.new
@@ -48,6 +49,14 @@ class MealRecordsController < ApplicationController
   private
   def meal_record_params
     params.require(:meal_record).permit(:diary_id, :title, :body, :meal_image, :intake_status)
+  end
+  # url直打ち防止
+  def correct_user
+    meal_record = MealRecord.find(params[:id])
+    user = meal_record.diary.user
+    if current_user.id != user.id
+      redirect_to meal_record_path
+    end
   end
 
 end

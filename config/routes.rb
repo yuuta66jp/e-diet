@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # ルート設定
-  root 'diaries#index'
+  root 'home#about'
   # aboutページ設定
   get 'home/about', to: 'home#about'
   # namespaceを使い指定のパス(admin)にする

@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
   # ログアウト後のリダイレクト先を変更(トップページ)
   def after_sign_out_path_for(resource)
-    root_path
+    diaries_path
   end
   # sign_up時に許可するparameterの追加
   def configure_permitted_parameters

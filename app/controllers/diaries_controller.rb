@@ -1,6 +1,7 @@
 class DiariesController < ApplicationController
   # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update]
 
   def new
     # viewへ渡すためのインスタンス変数に空のモデルオブジェクトを作成
@@ -43,12 +44,11 @@ class DiariesController < ApplicationController
 
   def index
     # 遷移元のリンクにより表示を分岐する
-    case params[:index]
-    when "all"
-      @diaries = Diary.page(params[:page]).reverse_order
-    when "user"
+    if params[:index] == "user"
       @user = User.find(params[:id])
       @diaries = @user.diaries.page(params[:page]).reverse_order
+    else
+      @diaries = Diary.page(params[:page]).reverse_order
     end
   end
 
@@ -97,6 +97,13 @@ class DiariesController < ApplicationController
 
   def diary_params
     params.require(:diary).permit(:remark, :activity_status, :tag_list, :created_on)
+  end
+  # url直打ち防止
+  def correct_user
+    diary = Diary.find(params[:id])
+    if current_user.id != diary.user.id
+      redirect_to diary_path
+    end
   end
 
 end
