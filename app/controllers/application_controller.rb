@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
     time1 = Time.current.end_of_day.advance(hours: -9)
     case resource
       when User
+        # ログインポイント付与のメッセージ表示(1日1回)
         unless current_user.rewards.where(issue_reason: 1, created_at: time0..time1).exists?
           flash[:notice] = 'ログインポイント(5point)取得しました！'
         end
