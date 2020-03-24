@@ -29,7 +29,7 @@
               {name: "自分", data: @self_data},
               ], discrete: true %>
           <% else %>
-            <%= line_chart name: @user.name, data: @user_data, discrete: true %>
+            <%= line_chart @user_data, discrete: true %>
           <% end %>
         </div>
       </div>

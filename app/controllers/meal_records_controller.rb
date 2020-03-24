@@ -6,7 +6,10 @@ class MealRecordsController < ApplicationController
   def new
     @meal_record = MealRecord.new
     @diary = Diary.find(params[:id])
-
+    # url直打ち防止
+    if @diary.user.id != current_user.id
+      redirect_to diary_path(@diary)
+    end
   end
 
   def create

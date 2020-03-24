@@ -8,7 +8,8 @@ class Diary < ApplicationRecord
   # バリデーション設定
   # :onオプションでupdate時のみバリデーションを設定
   validates :activity_status, presence: true, on: :update
-  validates :created_on,      presence: true
+  # uniquenessで一意であることを定義scopeにて範囲を指定
+  validates :created_on,      presence: true, uniqueness: { scope: :user_id }
 
 
   # enum機能の定義
