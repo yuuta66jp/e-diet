@@ -7,7 +7,7 @@
   <div class="row">
     <% @diaries.each do |diary| %>
     <div class="col-xs-3">
-      <div class="diary-index">
+      <div class="diary-index center">
         <%= attachment_image_tag diary.user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %><br>
         <%= diary.user.name %>
         <p><%= link_to diary.created_on.strftime('%Y年%m月%d日'), diary_path(diary) %>の日記</p>
@@ -16,6 +16,6 @@
     </div>
     <% end %>
   </div>
-  <div class="page">
+  <div class="center">
     <%= paginate @diaries, class: "paginate" %>
   </div>

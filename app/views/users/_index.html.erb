@@ -7,7 +7,7 @@
   <div class="row">
     <% users.each do |user| %>
     <div class="col-xs-3">
-      <div class="user-index">
+      <div class="user-index center">
         <%= link_to user_path(user) do %>
         <%= attachment_image_tag user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %><br>
         <%= user.name %>
@@ -38,7 +38,7 @@
     </div>
     <% end %>
   </div>
-<div class="page">
+<div class="center">
   <%= paginate users, class: "paginate" %>
 </div>
 

@@ -47,6 +47,8 @@ ul.footer-menu li {
 
 .footer-menu {
   padding-left: 0px;
+  padding-top: 10px;
+
 }
 ul.footer-menu a {
   color: white;
@@ -95,7 +97,6 @@ ul.footer-menu a {
 
 .user-index {
   padding: 50px 25px;
-  text-align: center;
   width: 190px;
   height: 460px;
   margin: auto;
@@ -139,7 +140,6 @@ ul.footer-menu a {
 
 .diary-index {
   padding: 30px 25px;
-  text-align: center;
   width: 170px;
   height: 270px;
   margin: auto;
@@ -172,10 +172,6 @@ ul.footer-menu a {
   color: goldenrod;
 }
 
-.page {
-  text-align: center;
-}
-
 .alert {
   background-color: rgba(255,255,255,0.9);
   margin-bottom: 0px;
@@ -188,7 +184,6 @@ background: linear-gradient(transparent 60%, #ffff66 60%);
 }
 
 .about {
-  text-align: center;
   padding-top: 20px;
   padding-bottom: 50px;
 }
@@ -203,4 +198,8 @@ background: linear-gradient(transparent 60%, #ffff66 60%);
 
 .label-success > a {
   color: white;
+}
+
+.congfirm {
+  padding-top: 70px;
 }
