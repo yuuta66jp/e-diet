@@ -39,7 +39,7 @@ AWS(EC2,RDS,EIP)
 Vagrant,VirtualBox
 
 ## バージョン
-Ruby 2.5.7
+Ruby 2.5.7  
 Rails 5.2.4.1
 
 ## 作者
