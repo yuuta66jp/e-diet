@@ -29,7 +29,7 @@
             <li class= "nav-item"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
           <!-- admin -->
           <% elsif admin_signed_in? %>
-            <li class= "nav-item">管理者</li>
+            <li class= "nav-item"><%= link_to "管理者", admins_topics_path %></li>
             <li class= "nav-item"><%= link_to "topics", admins_topics_path %></li>
             <li class= "nav-item"><%= link_to "users", admins_users_path %></li>
             <li class= "nav-item"><%= link_to "diaries", admins_diaries_path %></li>
