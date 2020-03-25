@@ -34,6 +34,8 @@
 
             <h3>活動量</h3>
               <p><%= @diary.activity_status %></p>
+            <h3>タグ</h3>
+              <h4><%= render "diaries/tag_list", tag_list: @diary.tag_list %></h4>
             <% if user_signed_in? %>
               <% if @diary.user.id == current_user.id %>
                 <%= link_to "編集", edit_diary_path(@diary.id), class: "btn btn-success" %>

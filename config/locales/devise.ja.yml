@@ -18,6 +18,7 @@ ja:
       unauthenticated: 'ログインまたは登録が必要です'
       unconfirmed: '本登録を行ってください'
       locked: 'アカウントはロックされています'
+      not_found_in_database: "%{authentication_keys} もしくはパスワードが不正です。"
       invalid: 'メールアドレスまたはパスワードが違います'
       invalid_token: '認証キーが不正です'
       timeout: '一定時間が経過したため、再度ログインが必要です'

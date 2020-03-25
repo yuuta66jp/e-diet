@@ -40,7 +40,7 @@
         <div class="form-group row">
           <div class="col-xs-4 col-xs-offset-4">
             <%= f.label :タグ %><br>
-            <%= f.text_field :tag_list, value: @diary.tag_list.join(','), class: "form-control" %>
+            <%= f.text_field :tag_list, value: @diary.tag_list.join(','), class: "form-control", placeholder: "複数入力の場合カンマ(,)区切り" %>
           </div>
         </div>
 

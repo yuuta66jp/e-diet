@@ -50,6 +50,10 @@ class DiariesController < ApplicationController
     else
       @diaries = Diary.page(params[:page]).reverse_order
     end
+    # タグ検索
+    if params[:tag_name]
+      @diaries = Diary.tagged_with("#{params[:tag_name]}").page(params[:page]).reverse_order
+    end
   end
 
   def show
