@@ -37,8 +37,6 @@
             <!-- エラーメッセージの部分テンプレート(f.objectで@diaryをmodelに渡す) -->
             <%= render 'layouts/error_messages', model: f.object %>
             <%= f.fields_for @body_weight do |weight| %>
-            <!-- エラーメッセージの部分テンプレート(f.objectで@diaryをmodelに渡す) -->
-            <%= render 'layouts/error_messages', model: f.object %>
             <div class="form-group row">
               <div class="col-xs-4">
                 <%= weight.label :体重 %><br>

@@ -69,19 +69,28 @@ class DiariesController < ApplicationController
     @diary = Diary.find(params[:id])
     @meal_records = @diary.meal_records.order(intake_status: :asc)
     # find_byメソッドによりdairy_idより取得
-    @body_weight = BodyWeight.find_by(diary_id: params[:id])
+    unless @body_weight = BodyWeight.find_by(diary_id: params[:id])
+      @body_weight = BodyWeight.new
+    end
   end
 
   def update
     @diary = Diary.find(params[:id])
     @meal_records = @diary.meal_records
-    @body_weight = BodyWeight.find_by(diary_id: params[:id])
+    unless @body_weight = BodyWeight.find_by(diary_id: params[:id])
+      @body_weight = @diary.build_body_weight(
+      user_id:       current_user.id,
+      weight_record: params[:diary][:body_weight][:weight_record]
+      )
+    end
     if @diary.update(diary_params)
       if @body_weight.update(
         weight_record: params[:diary][:body_weight][:weight_record]
         )
         redirect_to diary_path(@diary.id), notice: '更新が成功しました！'
-      else #if文でエラー時の分岐表示
+      elsif @body_weight.save
+        redirect_to diary_path(@diary.id), notice: '更新が成功しました！'
+      else
         flash.now[:alert] = '体重を入力してください'
         render :edit
       end
