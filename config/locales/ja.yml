@@ -7,6 +7,46 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+    models:
+      diary: "ダイアリー"
+      body_weight: "体重"
+      meal_record: "食事記録"
+      diary_comment: "日記コメント"
+      genre: "ジャンル"
+      topic: "トピック"
+      user: "ユーザー"
+    attributes:
+      diary:
+        created_on: "日付"
+        remark: "メモ"
+        activity_status: "活動量"
+      body_weight:
+        weight_record: "体重記録"
+      meal_record:
+        title: "タイトル"
+        body: "内容"
+        intake_status: "タイミング"
+        meal_image: "食事画像"
+      diary_comment:
+        content: "コメント"
+      genre:
+        name: "ジャンル名"
+        is_active: "ステータス"
+      topic:
+        genre: "ジャンル"
+        title: "タイトル"
+        body: "内容"
+        topic_image: "画像"
+      user:
+        name: "ユーザー名"
+        gender: "性別"
+        profile_image: "プロフィール画像"
+        birthday: "生年月日"
+        introduction: "自己紹介"
+        height: "身長"
+        goal_weight: "目標体重"
+        public_status: "公開ステータス"
+        rank_status: "ランクステータス"
   date:
     abbr_day_names:
     - 日

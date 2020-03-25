@@ -86,7 +86,6 @@ class DiariesController < ApplicationController
         render :edit
       end
     else #if文でエラー時の分岐表示
-      flash.now[:alert] = '活動量を選択してください'
       render :edit
     end
   end
