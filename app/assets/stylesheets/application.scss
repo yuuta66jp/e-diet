@@ -33,6 +33,25 @@ header {
   color: #008000;
 }
 
+footer {
+  width: 100%;
+  height: 60px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  text-align: center;
+}
+
+ul.footer-menu li {
+  display: inline;
+}
+
+.footer-menu {
+  padding-left: 0px;
+}
+ul.footer-menu a {
+  color: white;
+}
+
 .nav > a {
   color: #008000;
 }
