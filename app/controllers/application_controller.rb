@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
-
   # ログイン後のリダイレクト先を変更
   def after_sign_in_path_for(resource)
     time0 = Time.current.midnight.advance(hours: -9)

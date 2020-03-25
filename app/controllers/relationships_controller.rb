@@ -6,9 +6,9 @@ class RelationshipsController < ApplicationController
     user = User.find(params[:user_id])
     case params[:index]
       when "follower"
-    @users = user.following_user.page(params[:page]).reverse_order
+        @users = user.following_user.page(params[:page]).reverse_order
       when "followed"
-    @users = user.follower_user.page(params[:page]).reverse_order
+        @users = user.follower_user.page(params[:page]).reverse_order
     end
   end
 

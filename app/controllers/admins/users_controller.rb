@@ -1,6 +1,7 @@
 class Admins::UsersController < ApplicationController
   # adminログイン時にのみアクセスを許可する(deviseのメッソド)
   before_action :authenticate_admin!
+
   def index
     @users = User.all
   end
@@ -29,7 +30,6 @@ class Admins::UsersController < ApplicationController
   end
 
   private
-
   def user_params
     params.require(:user).permit(:name, :gender, :birthday, :height, :goal_weight, :public_status, :email, :introduction, :profile_image)
   end

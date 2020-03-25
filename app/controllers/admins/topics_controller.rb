@@ -1,6 +1,7 @@
 class Admins::TopicsController < ApplicationController
   # adminログイン時にのみアクセスを許可する(deviseのメッソド)
   before_action :authenticate_admin!
+
   def new
     @topic = Topic.new
   end
@@ -42,7 +43,6 @@ class Admins::TopicsController < ApplicationController
   end
 
   private
-
   def topic_prams
     params.require(:topic).permit(:genre_id, :title, :body, :topic_image)
   end

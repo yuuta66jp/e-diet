@@ -1,24 +1,49 @@
-# README
+# e-diet
+e-dietは食事記録を含む日記を投稿することで、様々なユーザーと繋がる事ができるダイエット支援・交流サイトです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 実装機能
 
-Things you may want to cover:
+### ユーザー関連
+- 新規登録機能
+- ログイン、ログアウト機能
+- ポイント獲得数による一覧表示機能
+- 編集、退会機能
+- 折れ線グラフを用いた体重管理機能
 
-* Ruby version
+### 日記関連
+- 食事記録を含む日記投稿機能
+- 日記編集、削除機能
+- 食事記録への画像投稿機能
+- タグ機能
+- タグ別表示を含む一覧表示機能
 
-* System dependencies
+### コメント関連
+- コメント投稿機能(Ajaxを用いた非同期通信)
+- コメント削除機能(Ajaxを用いた非同期通信)
 
-* Configuration
+### フォロー関連
+- フォロー、フォロー解除機能
+- フォロワー、フォロー一覧表示機能
 
-* Database creation
+### 管理者関連
+- トピックス投稿機能
+- トッピクス編集、削除機能
+- トピックスジャンル作成、編集機能
+- ユーザー編集、削除機能
+- 日記削除機能
 
-* Database initialization
+### その他
+- インフラ
+AWS(EC2,RDS,EIP)
+- 開発環境
+Vagrant,VirtualBox
 
-* How to run the test suite
+## バージョン
+Ruby 2.5.7
+Rails 5.2.4.1
 
-* Services (job queues, cache servers, search engines, etc.)
+## 作者
+GitHub: yuuta66jp
 
-* Deployment instructions
-
-* ...
+## ライセンス
+MIT License
