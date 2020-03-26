@@ -9,10 +9,15 @@
         <div class="col-xs-4 title">
           <h3><%= @meal_record.diary.created_on.strftime('%Y年%m月%d日') %>の<%= @meal_record.intake_status %></h3>
           <h3>タイトル</h3>
-          <p><%= @meal_record.title %></p>
+            <p><%= @meal_record.title %></p>
           <h3>内容</h3>
-          <p><%= @meal_record.body %></p>
+            <p><%= @meal_record.body %></p>
         </div>
       </div>
     </div>
+    <div class="back center">
+      <%= link_to "戻る", 'javascript:history.back()', class: "btn btn-info btn-sm" %>
+    </div>
   </div>
+</div>
+

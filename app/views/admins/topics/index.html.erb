@@ -36,12 +36,12 @@
           <td><%= topic.genre.name %></td>
           <td><%= link_to "編集", edit_admins_topic_path(topic), class: "btn btn-success" %>
             <%= link_to "削除", admins_topic_path(topic), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %></td>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="center">
-      <%= paginate @topics, class: "paginate" %>
-    </div>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+  <div class="center">
+    <%= paginate @topics, class: "paginate" %>
+  </div>
+</div>
