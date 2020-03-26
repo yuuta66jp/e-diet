@@ -20,9 +20,12 @@
           <td><%= user.rank_status %>（<%= user.rewards.total_point %>point）</td>
           <td><%= link_to "編集", admins_user_path(user), class: "btn btn-success" %></td>
         </tr>
-            <% end %>
+        <% end %>
       </tbody>
-          </table>
-        </div>
-      </div>
+    </table>
+  </div>
+  <div class="center">
+    <%= paginate @users, class: "paginate" %>
+  </div>
+</div>
 

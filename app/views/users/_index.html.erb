@@ -18,7 +18,6 @@
       <p><%= user.rank_status %>（<%= user.rewards.total_point %>point）</p>
       <% if user.public_status == "公開" %>
         <p>身長<%= user.height %>cm</p>
-        <!-- ここに最新の体重を表示したい -->
         <p>目標体重<%= user.goal_weight %>kg</p>
       <% else %>
         <p>身長：非公開</p>

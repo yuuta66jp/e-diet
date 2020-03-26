@@ -10,21 +10,21 @@
         <!-- 追加項目 -->
         <div class="form-group row">
           <div class="col-xs-4 col-xs-offset-4">
-            <%= f.label :ユーザー名 %><br>
+            <%= f.label :ユーザー名 %><em>(必須)</em><br>
             <%= f.text_field :name, autofocus:true, autocomplete: "name", class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group row">
           <div class="col-xs-2 col-xs-offset-5">
-            <%= f.label :性別 %><br>
+            <%= f.label :性別 %><em>(必須)</em><br>
             <%= f.select :gender, User.genders.keys.to_a, prompt: "選択してください" %>
           </div>
         </div>
 
         <div class="form-group row">
           <div class="col-xs-2 col-xs-offset-5">
-            <%= f.label :生年月日 %><br>
+            <%= f.label :生年月日 %><em>(必須)</em><br>
             <!-- use_month_numbers（月の表示を数字で表示） -->
             <%= f.date_select :birthday, start_year: 1930, end_year: Time.current.year, prompt: "--", use_month_numbers: true %>
           </div>
@@ -56,7 +56,7 @@
 
         <div class="form-group row">
           <div class="col-xs-4 col-xs-offset-4">
-            <%= f.label :メールアドレス %><br />
+            <%= f.label :メールアドレス %><em>(必須)</em><br />
             <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
           </div>
         </div>
@@ -65,7 +65,7 @@
           <div class="col-xs-2 col-xs-offset-5">
           <%= f.label :パスワード %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <em>(<%= @minimum_password_length %>文字以上)</em>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>

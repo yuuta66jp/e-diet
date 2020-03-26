@@ -3,7 +3,7 @@ class Admins::UsersController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @users = User.all
+    @users = User.page(params[:page]).reverse_order.per(12)
   end
 
   def show

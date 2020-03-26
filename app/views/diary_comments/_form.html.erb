@@ -1,5 +1,5 @@
 <!-- form_withではデフォルトでremote: true(JS形式) -->
 <%= form_with model: [diary, comment] do |f| %>
   <%= f.text_area :content, class: "form-control", rows: 5, placeholder: "コメントはここに" %>
-  <%= f.submit "コメントする" %>
+  <%= f.submit "コメントする", class: "btn btn-warning" %>
 <% end %>

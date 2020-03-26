@@ -3,7 +3,7 @@ class Admins::DiariesController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @diaries = Diary.all
+    @diaries = Diary.page(params[:page]).reverse_order.per(12)
   end
 
   def show
