@@ -14,10 +14,11 @@ class User < ApplicationRecord
   has_many :diary_comments, dependent: :destroy
 
   # バリデーション設定
-  validates :name,     presence: true, length: { maximum: 15 }
-  validates :gender,   presence: true
-  validates :birthday, presence: true
-  validates :introduction,             length: { maximum: 50 }
+  validates :name,        presence: true, length: { maximum: 15 }
+  validates :gender,      presence: true
+  validates :birthday,    presence: true
+  validates :goal_weight, numericality: true
+  validates :introduction,                length: { maximum: 50 }
 
   # enum機能の定義
   enum gender:        { 男性: 0, 女性: 1, その他: 2 }
