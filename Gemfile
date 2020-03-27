@@ -77,3 +77,9 @@ gem "chartkick"
 gem 'groupdate'
 
 gem 'kaminari', '~> 1.1.1'
+
+gem 'dotenv-rails'
+
+group :production do
+  gem 'mysql2'
+end
