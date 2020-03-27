@@ -59,7 +59,7 @@ class DiariesController < ApplicationController
   def show
     @diary = Diary.find(params[:id])
     # @diaryに紐づいたmeal_recordsを取得
-    @meal_records = @diary.meal_records
+    @meal_records = @diary.meal_records.order(intake_status: :asc)
     # comment表示、作成
     @comments = @diary.diary_comments
     @comment = @diary.diary_comments.build
