@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # ログイン済みユーザーにのみアクセスを許可する(deviseのメソッド)
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :correct_user, only: [:edit, :update]
+  before_action :correct_user,       only: [:edit, :update]
+  before_action :forbid_test_user,   only: [:update, :destroy]
 
   def index
     #@users = User.all
@@ -42,6 +43,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :gender, :birthday, :height, :goal_weight, :public_status, :email, :introduction, :profile_image)
   end
@@ -50,6 +52,14 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     if current_user != user
       redirect_to user_path
+    end
+  end
+  # テストユーザー用フィルター
+  def forbid_test_user
+    user = User.find(params[:id])
+    if user.email == "test@test"
+      flash[:notice] = "テストユーザーのため変更,退会はできません"
+      redirect_to root_path
     end
   end
 

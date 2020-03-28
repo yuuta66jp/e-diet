@@ -2,6 +2,9 @@
   <div class="form edit">
     <div class="row">
       <div class="col-xs-12 center">
+        <%= form_with model: @diary, local: true do |f| %>
+        <!-- エラーメッセージの部分テンプレート(f.objectで@diaryをmodelに渡す) -->
+        <%= render 'layouts/error_messages', model: f.object %>
         <h1 class="diary">日記編集画面</h1>
         <div class="row">
 
@@ -33,9 +36,7 @@
           </div>
 
           <div class="col-xs-5 col-xs-offset-1 edit_diary">
-            <%= form_with model: @diary, local: true do |f| %>
-            <!-- エラーメッセージの部分テンプレート(f.objectで@diaryをmodelに渡す) -->
-            <%= render 'layouts/error_messages', model: f.object %>
+
             <%= f.fields_for @body_weight do |weight| %>
             <div class="form-group row">
               <div class="col-xs-4">
@@ -62,15 +63,13 @@
                 <%= f.text_field :tag_list, value: @diary.tag_list.join(','), class: "form-control" %>
               </div>
             </div>
-            <%= f.submit "更新する", class: "btn btn-success" %>
-            <% end %>
           </div>
-
         </div>
+        <div class="back">
+          <%= f.submit "更新する", class: "btn btn-success" %>
+        </div>
+        <% end %>
       </div>
-    </div>
-    <div class="back center">
-      <%= link_to "戻る", 'javascript:history.back()', class: "btn btn-info btn-sm" %>
     </div>
   </div>
 </div>

@@ -79,11 +79,16 @@
       </div>
 
         <div class="actions">
-          <%= f.submit "新規登録", class: "btn btn-success" %>
+          <%= f.submit "新規登録", class: "btn btn-warning" %>
         </div>
         <% end %>
-
-        <%= render "devise/shared/links" %>
+        <div class="back">
+          <p>ログインはこちら</p>
+            <%= render "devise/shared/links" %>
+          <p class="test">テストユーザーはこちら<br>
+          ⬇︎</p>
+          <%= render "devise/sessions/testuser" %>
+        </div>
       </div>
     </div>
   </div>
