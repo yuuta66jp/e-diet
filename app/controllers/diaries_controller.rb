@@ -62,7 +62,7 @@ class DiariesController < ApplicationController
     @meal_records = @diary.meal_records.order(intake_status: :asc)
     # comment表示、作成
     @comments = @diary.diary_comments
-    @comment = @diary.diary_comments.build
+    @comment = DiaryComment.new
   end
 
   def edit
