@@ -9,6 +9,6 @@
 # Adminの初期値を設定
 Admin.create!(
   name:     'admin',
-  email:    'admin@gmail.com',
-  password: '111111'
+  email:    'admin@admin',
+  password: '123123'
   )
