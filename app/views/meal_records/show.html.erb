@@ -11,7 +11,7 @@
           <h3>タイトル</h3>
             <p><%= @meal_record.title %></p>
           <h3>内容</h3>
-            <p><%= @meal_record.body %></p>
+            <p><%= simple_format(@meal_record.body) %></p>
         </div>
       </div>
     </div>

@@ -9,7 +9,7 @@
         <p><%= @topic.title %></p>
         <p><%= @topic.genre.name %></p>
         <h3>内容</h3>
-        <p><%= @topic.body %></p>
+        <p><%= simple_format(@topic.body) %></p>
       </div>
     </div>
   </div>

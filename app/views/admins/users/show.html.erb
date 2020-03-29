@@ -62,7 +62,7 @@
           <!-- 情報公開設定 -->
           <tr>
             <th>自己紹介</th>
-            <td><%= @user.introduction %></td>
+            <td><%= simple_format(@user.introduction) %></td>
           </tr>
         </tbody>
       </table>

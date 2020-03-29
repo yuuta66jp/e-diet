@@ -28,7 +28,7 @@
         </div>
         <div class="col-xs-5 col-xs-offset-1 edit_diary">
           <h3>メモ</h3>
-          <p><%= @diary.remark %></p>
+          <p><%= simple_format(@diary.remark) %></p>
           <h3>活動量</h3>
           <p><%= @diary.activity_status %></p>
           <%= link_to "削除", admins_diary_path(@diary), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
