@@ -1,14 +1,13 @@
 <div class="form edit">
   <div class="row">
-    <div class="col-xs-12 center">
+    <div class="col-xs-12">
       <div class="col-xs-4 col-xs-offset-2">
-        <%= attachment_image_tag @topic, :topic_image, size: "150x150", class: "img-rounded", fallback: "no_image1.jpg" %>
+        <%= attachment_image_tag @topic, :topic_image, size: "200x200", class: "img-rounded", fallback: "no_image1.jpg" %>
       </div>
       <div class="col-xs-4 title">
-        <h3>タイトル</h3>
-        <p><%= @topic.title %></p>
-        <h3>内容</h3>
-        <p><%= simple_format(@topic.body) %></p>
+        <h3><%= @topic.title %></h3>
+        <h4>内容</h4>
+          <p><%= simple_format(@topic.body) %></p>
       </div>
     </div>
   </div>
