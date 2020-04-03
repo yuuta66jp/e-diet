@@ -29,7 +29,7 @@ class User < ApplicationRecord
   def latest_diary
     diaries.order(created_on: :desc).first
   end
-
+  # ぼっち演算子でnilガード
   def latest_weight_record
     latest_diary&.body_weight&.weight_record
   end
