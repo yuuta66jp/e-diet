@@ -17,11 +17,11 @@
       </p>
       <p><%= user.rank_status %>（<%= user.rewards.total_point %>point）</p>
       <% if user.public_status == "公開" %>
-        <p>身長<%= user.height %>cm</p>
+        <p>身長<%= user.height %>cm 体重<%= user.latest_weight_record %>kg</p>
         <p>目標体重<%= user.goal_weight %>kg</p>
       <% else %>
         <p>身長：非公開</p>
-        <p>目標体重：非公開</p>
+        <p>体重：非公開</p>
       <% end %>
       <p>日記投稿数：<%= link_to user.diaries.count, diaries_path(index: "user", id: user.id) %>件</p>
       <% if user_signed_in? %>

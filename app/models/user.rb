@@ -25,6 +25,15 @@ class User < ApplicationRecord
   enum public_status: { 公開: 0, 非公開: 1 }
   enum rank_status:   { グリーン: 0, シルバー: 1, ゴールド: 2 }
 
+  # 現在の体重取得
+  def latest_diary
+    diaries.order(created_on: :desc).first
+  end
+
+  def latest_weight_record
+    latest_diary&.body_weight&.weight_record
+  end
+
   # ランクステータス変更メソッド
   def change_rank(point)
     # ゴールドランク変更(200point以上)
