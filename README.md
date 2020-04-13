@@ -44,6 +44,7 @@ e-dietは食事記録を含む日記を投稿することで、様々なユー�
 
 ### その他
 - bootstrap-sass 3.3.6
+- jQuery
 - インフラ  
 AWS(EC2,RDS,EIP,Route53,ACM,ALB)
 - 開発環境  
