@@ -39,11 +39,11 @@
         <div class="form-group row">
           <div class="col-xs-2 col-xs-offset-5">
             <%= f.label :身長 %><br>
-            <%= f.number_field :height, min: 0, class: "form-control" %>
+            <%= f.number_field :height, min: 0, class: "form-control", id: "height" %>
           </div>
         </div>
 
-        <div class="form-group row">
+        <div class="form-group row" id="text">
           <div class="col-xs-2 col-xs-offset-5">
             <%= f.label :目標体重 %><br>
             <%= f.number_field :goal_weight, min: 0, class: "form-control" %>
