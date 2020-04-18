@@ -5,8 +5,13 @@ class UsersController < ApplicationController
   before_action :forbid_test_user,   only: [:update, :destroy]
 
   def index
-    #@users = User.all
-    @users = User.page(params[:page]).reverse_order
+    if params[:sort] == "diary"
+      @users = User.joins("left join diaries on diaries.user_id = users.id").group(:id).order("count(*) desc").page(params[:page])
+    elsif params[:sort] == "follower"
+      @users = User.joins("left join relationships on followed_id = users.id").group(:id).order("count(*) desc").page(params[:page])
+    else
+      @users = User.page(params[:page]).reverse_order
+    end
   end
 
   def show
