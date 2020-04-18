@@ -24,6 +24,7 @@ class Reward < ApplicationRecord
       point: Point[reason],
       issue_reason: reason
       )
+    user.total_point += Point[reason]
   end
 
 end

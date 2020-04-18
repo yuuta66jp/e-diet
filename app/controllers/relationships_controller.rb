@@ -29,6 +29,8 @@ class RelationshipsController < ApplicationController
     # フォロー解除時にポイント削除
     follow_point = user.rewards.find_by(issue_reason: 3)
     follow_point.destroy
+    # Model名::定数名で参照
+    user.total_point -= Reward::Point[3]
     # ランクステータ変更確認(ポイント変更後)
     user.change_rank(user.rewards.total_point)
     redirect_back(fallback_location: root_path)
