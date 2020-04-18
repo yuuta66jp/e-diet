@@ -9,9 +9,9 @@ class UsersController < ApplicationController
     if params[:sort] == "point"
       @users = User.order(total_point: "DESC").page(params[:page])
     elsif params[:sort] == "diary"
-      @users = User.joins("left join diaries on diaries.user_id = users.id").group(:id).order("count(*) desc").page(params[:page])
+      @users = User.joins("left join diaries on diaries.user_id = users.id").group(:id).order(Arel.sql("count(*) desc")).page(params[:page])
     elsif params[:sort] == "follower"
-      @users = User.joins("left join relationships on followed_id = users.id").group(:id).order("count(*) desc").page(params[:page])
+      @users = User.joins("left join relationships on followed_id = users.id").group(:id).order(Arel.sql("count(followed_id) desc")).page(params[:page])
     else
       @users = User.page(params[:page]).reverse_order
     end
