@@ -19,6 +19,8 @@ class User < ApplicationRecord
   validates :birthday,    presence: true
   validates :goal_weight, numericality: true
   validates :introduction,                length: { maximum: 50 }
+  validates :total_point, numericality: { only_integer: true }
+
 
   # enum機能の定義
   enum gender:        { 男性: 0, 女性: 1, その他: 2 }
