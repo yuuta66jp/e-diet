@@ -46,7 +46,7 @@ document.addEventListener("turbolinks:load", function() {
           // propメソッドにてoption[selected]を無効化
           $("select option:first").prop("selected", false);
         }
-        // urlの&sort=以下を取得し、replaceメッソドにて&sort=を削除し値を取得
+        // urlの&sort=以下を取得し、replaceメソッドにて&sort=を削除し値を取得
         var selected_option = location["href"].match(/&sort=*.+/)[0].replace("&sort=", "");
   
         if(selected_option == "new") {
