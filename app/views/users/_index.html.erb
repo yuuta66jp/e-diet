@@ -1,7 +1,6 @@
 <div class="main container">
   <%= form_with(url: users_path, method: :get, local: true) do |f| %>
     <%= select_tag("sort", options_for_select({登録の新しい順: "new", 取得ポイントの多い順: "point", 日記投稿数の多い順: "diary", フォロワーの多い順: "follower"}), include_blank: "並び替え")%>
-    <%= f.submit "並び替え" %>
   <% end %>
   <div class="icon">
     <%= link_to new_diary_path do %>

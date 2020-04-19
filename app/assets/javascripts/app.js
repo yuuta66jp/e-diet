@@ -9,3 +9,59 @@ document.addEventListener("turbolinks:load", function() {
     });
   });
 })
+
+document.addEventListener("turbolinks:load", function() {
+  $(function() {
+    $("select[name=sort]").change(function() {
+
+      var value = $(this).val();
+
+      if (value == "new") {
+        url = "?utf8=✓&sort=new"
+      } else if (value == "point") {
+        url = "?utf8=✓&sort=point"
+      } else if (value == "diary") {
+        url = "?utf8=✓&sort=diary"
+      } else if (value == "follower") {
+        url = "?utf8=✓&sort=follower"
+      } else {
+        url = ""
+      };
+
+      var current_url = window.location.href;
+      // ソート機能の重複禁止
+      if (location["href"].match(/\?utf8=*.+/) != null) {
+        // ?utf8=以下を取得
+        var remove = location["href"].match(/\?utf8=*.+/)
+        // ?utf8=以下を削除し重複を防止
+        var current_url = current_url.replace(remove, "")
+      };
+      
+      window.location.href = current_url + url
+    });
+    
+    $(function() {
+      if (location["href"].match(/\?utf8=*.+/) != null) {
+        if ($("select option[selected]")) {
+          // propメソッドにてoption[selected]を無効化
+          $("select option:first").prop("selected", false);
+        }
+        // urlの&sort=以下を取得し、replaceメッソドにて&sort=を削除し値を取得
+        var selected_option = location["href"].match(/&sort=*.+/)[0].replace("&sort=", "");
+  
+        if(selected_option == "new") {
+          var sort = 1
+        } else if (selected_option == "point") {
+          var sort = 2
+        } else if (selected_option == "diary") {
+          var sort = 3
+        } else if (selected_option == "follower") {
+          var sort = 4
+        }
+  
+        var add_selected = $("select[name=sort]").children()[sort]
+        $(add_selected).attr("selected", true)
+      }
+    });
+  });
+})
