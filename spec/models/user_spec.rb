@@ -67,6 +67,15 @@ describe 'Userモデルのテスト', type: :model do
       end
     end
 
+    context 'heightカラム' do
+      let(:test_user) { user }
+      it '整数であること' do
+        # 小数点を指定
+        test_user.height = Faker::Number.decimal(l_digits: 1)
+        is_expected.to eq false;
+      end
+    end
+
   end
   
 end

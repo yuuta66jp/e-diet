@@ -5,6 +5,6 @@ class BodyWeight < ApplicationRecord
 
   # バリデーション設定
   # numericalityは属性に数値のみが使われているか検証(デフォルトでnillは弾く)
-  validates :weight_record, numericality: true
+  validates :weight_record, numericality: { only_integer: true }
 
 end
