@@ -15,7 +15,7 @@ describe 'ユーザー機能', type: :system do
         # fill_inメソッド(フォームフィールドを探し、withで入力)
         fill_in 'user[name]', with: 'ユーザーa'
         fill_in 'user[password]', with: 'password'
-        # click_bottonメッソドでログインを押す
+        # click_buttonメッソドでログインを押す
         click_button 'ログイン'
       end
 
