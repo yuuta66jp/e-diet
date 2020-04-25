@@ -1,1 +1,13 @@
-<%= render 'users/index', users: @users %>
+<div class="main container">
+  <div class="icon">
+    <% if params[:index] == "follower" %>
+	    <div class="col-xs-4 col-xs-offset-4 center follow">フォローしている</div>
+    <% else %>
+	    <div class="col-xs-4 col-xs-offset-4 center follow">フォローされている</div>
+    <% end %>
+    <%= link_to new_diary_path do %>
+      <i class="fas fa-plus-circle fa-4x"></i>
+    <% end %>
+  </div>
+  <%= render 'users/index', users: @users %>
+</div>
