@@ -64,6 +64,18 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "e-diet_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+  
+  # ActionMailerを利用する設定(Gmailのsmtpサーバーを使用)
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => 'smtp.gmail.com',
+    :port => 587,
+    :domain => 'gmail.com',
+    :user_name => ENV['GMAIL_ADDRESS_KEY'],
+    :password => ENV['GMAIL_PASS_KEY'],
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
