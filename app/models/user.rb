@@ -19,9 +19,10 @@ class User < ApplicationRecord
   validates :birthday,    presence: true
   validates :goal_weight, numericality: { only_integer: true }
   # 空欄を許可
-  validates :height,      numericality: { only_integer: true }, allow_blank: true
-  validates :total_point, numericality: { only_integer: true }
-  validates :introduction,                length: { maximum: 50 }
+  validates :height,          numericality: { only_integer: true }, allow_blank: true
+  validates :total_point,     numericality: { only_integer: true }
+  validates :introduction,    length: { maximum: 50 }
+  validates :mail_permission, inclusion: { in: [true, false] }
 
 
   # enum機能の定義

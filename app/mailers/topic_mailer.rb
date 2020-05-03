@@ -1,6 +1,6 @@
 class TopicMailer < ApplicationMailer
   # 一斉配信設定
-  default to: -> { User.pluck(:email) },
+  default bcc: -> { User.where(mail_permission: true).pluck(:email) },
           from: "yuuta66jp@gmail.com"
 
   def topic
