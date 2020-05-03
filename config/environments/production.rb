@@ -64,8 +64,9 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "e-diet_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-  
+
   # ActionMailerを利用する設定(Gmailのsmtpサーバーを使用)
+  config.action_mailer.default_url_options = { protocol: 'https' , host: 'e-diet.work' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address => 'smtp.gmail.com',
