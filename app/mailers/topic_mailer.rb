@@ -8,6 +8,5 @@ class TopicMailer < ApplicationMailer
     # メール内でURLが必要な場合は*_urlヘルパーを使用
     @url = topic_url(@topic.id)
     mail(subject: '【e-diet】新規トピックス配信のお知らせ')
-    binding.pry
   end
 end
