@@ -10,7 +10,7 @@ class Admins::TopicsController < ApplicationController
     @topic = Topic.new(topic_prams)
     if @topic.save
       # メール送信機能
-      TopicMailer.topic.deliver
+      TopicMailer.topic(@topic).deliver
       redirect_to admins_topic_path(@topic), notice: 'トピックスが作成されました'
     else #if文でエラー時の分岐表示
       render :new
