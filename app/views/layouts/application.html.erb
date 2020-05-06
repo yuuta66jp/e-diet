@@ -11,41 +11,42 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body class="menu-open">
+  <div id="cover"></div>
   <!--ヘッダーの記述-->
-  <header class="navbar navbar-fixed-top mb-2">
-    <div class="container">
-      <nav class="nav navbar-nav navbar-left">
-        <a class="navbar-brand">e-diet</a>
-      </nav>
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
-          <!-- if文でuser,admin,gestuser時の表示を分岐 -->
-          <!-- user -->
-          <% if user_signed_in? %>
-            <li class= "nav-item"><%= link_to current_user.name, user_path(current_user) %></li>
-            <li class= "nav-item"><%= link_to "topics", topics_path %></li>
-            <li class= "nav-item"><%= link_to "users", users_path %></li>
-            <li class= "nav-item"><%= link_to "diaries", diaries_path %></li>
-            <li class= "nav-item"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
-          <!-- admin -->
-          <% elsif admin_signed_in? %>
-            <li class= "nav-item"><%= link_to "管理者", admins_topics_path %></li>
-            <li class= "nav-item"><%= link_to "topics", admins_topics_path %></li>
-            <li class= "nav-item"><%= link_to "users", admins_users_path %></li>
-            <li class= "nav-item"><%= link_to "diaries", admins_diaries_path %></li>
-            <li class= "nav-item"><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
-          <!-- gest -->
-          <% else %>
-            <li class= "nav-item"><%= link_to "about", home_about_path %></li>
-            <li class= "nav-item"><%= link_to "topics", topics_path %></li>
-            <li class= "nav-item"><%= link_to "users", users_path %></li>
-            <li class= "nav-item"><%= link_to "diaries", diaries_path %></li>
-            <li class= "nav-item"><%= link_to "signup", new_user_registration_path %></li>
-            <li class= "nav-item"><%= link_to "login", new_user_session_path %></li>
-          <% end %>
-        </ul>
-      </nav>
+  <header class="navbar navbar-fixed-top">
+    <nav class="nav navbar-nav navbar-left">
+      <a class="navbar-brand">e-diet</a>
+      <i class="fa fa-bars" id="show"></i>
+    </nav>
+    <div id="menu">
+      <i class="fa fa-times" id="hide"></i>
+      <ul class="nav navbar-nav navbar-right">
+        <!-- if文でuser,admin,gestuser時の表示を分岐 -->
+        <!-- user -->
+        <% if user_signed_in? %>
+          <li class= "nav-item"><%= link_to current_user.name, user_path(current_user) %></li>
+          <li class= "nav-item"><%= link_to "topics", topics_path %></li>
+          <li class= "nav-item"><%= link_to "users", users_path %></li>
+          <li class= "nav-item"><%= link_to "diaries", diaries_path %></li>
+          <li class= "nav-item"><%= link_to "logout", destroy_user_session_path, method: :delete %></li>
+        <!-- admin -->
+        <% elsif admin_signed_in? %>
+          <li class= "nav-item"><%= link_to "管理者", admins_topics_path %></li>
+          <li class= "nav-item"><%= link_to "topics", admins_topics_path %></li>
+          <li class= "nav-item"><%= link_to "users", admins_users_path %></li>
+          <li class= "nav-item"><%= link_to "diaries", admins_diaries_path %></li>
+          <li class= "nav-item"><%= link_to "logout", destroy_admin_session_path, method: :delete %></li>
+        <!-- gest -->
+        <% else %>
+          <li class= "nav-item"><%= link_to "about", home_about_path %></li>
+          <li class= "nav-item"><%= link_to "topics", topics_path %></li>
+          <li class= "nav-item"><%= link_to "users", users_path %></li>
+          <li class= "nav-item"><%= link_to "diaries", diaries_path %></li>
+          <li class= "nav-item"><%= link_to "signup", new_user_registration_path %></li>
+          <li class= "nav-item"><%= link_to "login", new_user_session_path %></li>
+        <% end %>
+      </ul>
     </div>
   </header>
   <!-- userによりデザインを分岐表示 -->
