@@ -75,21 +75,22 @@ document.addEventListener("turbolinks:load", function() {
     var show = document.getElementById('show');
     var hide = document.getElementById('hide');
     var element = document.getElementById('target') ;
+    var scrollOff = function(e) {
+      e.preventDefault();
+    }
   
     show.addEventListener('click', function() {
       document.body.className = 'menu-open';
       element.style.overflowX = 'visible';
       // スクロールの無効(iOS)
-      window.addEventListener('touchmove', function(event) {
-        event.preventDefault();
-      });
+      document.addEventListener('touchmove', scrollOff, false);
     });
   
     hide.addEventListener('click', function() {
       document.body.className = '';
       element.style.overflowX = '';
       // スクロール無効解除
-      
+      document.removeEventListener('touchmove', scrollOff, false);
     });
   });  
 })
