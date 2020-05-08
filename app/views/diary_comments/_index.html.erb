@@ -4,8 +4,8 @@
     <td>
       <%= link_to user_path(comment.user) do %>
       <%= attachment_image_tag comment.user, :profile_image, size: '50x50', format: 'jpeg' %>
+      <% end %>
     </td>
-    <% end %>
     <td><%= comment.content %></td>
     <% if user_signed_in? %>
       <% if comment.user == current_user %>
