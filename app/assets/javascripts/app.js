@@ -80,8 +80,8 @@ document.addEventListener("turbolinks:load", function() {
       document.body.className = 'menu-open';
       element.style.overflowX = 'visible';
       // スクロールの無効(iOS)
-      $(window).on('touchmove.noScroll', function(e) {
-        e.preventDefault();
+      window.addEventListener('touchmove', function(event) {
+        event.preventDefault();
       });
     });
   
@@ -89,7 +89,7 @@ document.addEventListener("turbolinks:load", function() {
       document.body.className = '';
       element.style.overflowX = '';
       // スクロール無効解除
-      $(window).off('.noScroll');
+      
     });
   });  
 })
