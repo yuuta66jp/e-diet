@@ -74,23 +74,25 @@ document.addEventListener("turbolinks:load", function() {
 
     var show = document.getElementById('show');
     var hide = document.getElementById('hide');
-    var element = document.getElementById('target') ;
-    var scrollOff = function(e) {
-      e.preventDefault();
-    }
+    var menu = document.getElementById('menu');
+    var element = document.getElementById('target');
+    var html = document.documentElement;
+
   
     show.addEventListener('click', function() {
       document.body.className = 'menu-open';
-      element.style.overflowX = 'visible';
-      // スクロールの無効(iOS)
-      document.addEventListener('touchmove', scrollOff, false);
+      element.style.overflow = 'visible';
+      html.style.position = 'fixed';
     });
   
     hide.addEventListener('click', function() {
       document.body.className = '';
-      element.style.overflowX = '';
-      // スクロール無効解除
-      document.removeEventListener('touchmove', scrollOff, false);
+      element.style.overflow = '';
+      html.style.position = '';
+    });
+
+    menu.addEventListener('click', function() {
+      html.style.position = '';
     });
   });  
 })
