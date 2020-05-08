@@ -242,6 +242,10 @@ em {
 }
 
 @media screen and (max-width:425px) {
+  .navbar-fixed-top {
+    position: absolute;
+    overflow-x: hidden;
+  }
 
   #cover {
     background: #000;
@@ -292,6 +296,15 @@ em {
   body.menu-open #menu {
     right: 0;
   }
+
+  .nav > li:first-child {
+    margin-top: 50px;
+  }
+
+  .navbar-nav > li > a {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
   
   .index {
     width: 50%;
@@ -303,8 +316,10 @@ em {
   }
 
   .user-index {
-  height: 380px;
-
+    height: 380px;
   }
 
+  #sort {
+    width: auto;
+  }
 }

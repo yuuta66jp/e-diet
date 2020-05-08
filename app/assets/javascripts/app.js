@@ -74,13 +74,16 @@ document.addEventListener("turbolinks:load", function() {
 
     var show = document.getElementById('show');
     var hide = document.getElementById('hide');
+    var element = document.getElementById( 'target' ) ;
   
     show.addEventListener('click', function() {
       document.body.className = 'menu-open';
+      element.style.overflowX = 'visible';
     });
   
     hide.addEventListener('click', function() {
       document.body.className = '';
+      element.style.overflowX = '';
     });
   });  
 })
