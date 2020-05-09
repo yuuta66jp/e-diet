@@ -8,28 +8,28 @@
         <%= render 'layouts/error_messages', model: f.object %>
 
         <div class="form-group row">
-          <div class="col-xs-4 col-xs-offset-4">
+          <div class="col-xs-4 col-xs-offset-4 user-edit">
             <%= attachment_image_tag @user, :profile_image, size: "100x100", class: "img-circle", fallback: "no_image.jpg" %>
             <%= f.attachment_field :profile_image, placeholder: "プロフィール画像" %>
           </div>
         </div>
 
         <div class="form-group row">
-          <div class="col-xs-4 col-xs-offset-4">
+          <div class="col-xs-4 col-xs-offset-4 user-edit">
             <%= f.label :ユーザー名 %><br>
             <%= f.text_field :name, autofocus:true, autocomplete: "name", class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group row">
-          <div class="col-xs-2 col-xs-offset-5">
+          <div class="col-xs-2 col-xs-offset-5 user-edit">
             <%= f.label :性別 %><br>
             <%= f.select :gender, User.genders.keys.to_a, prompt: "選択してください" %>
           </div>
         </div>
 
         <div class="form-group row">
-          <div class="col-xs-2 col-xs-offset-5">
+          <div class="col-xs-2 col-xs-offset-5 user-edit">
             <%= f.label :生年月日 %><br>
             <!-- use_month_numbers（月の表示を数字で表示） -->
             <%= f.date_select :birthday, start_year: 1930, end_year: Time.current.year, prompt: "--", use_month_numbers: true %>
@@ -37,21 +37,21 @@
         </div>
 
         <div class="form-group row">
-          <div class="col-xs-2 col-xs-offset-5">
+          <div class="col-xs-2 col-xs-offset-5 user-edit">
             <%= f.label :身長 %><br>
             <%= f.number_field :height, min: 0, class: "form-control", id: "height" %>
           </div>
         </div>
 
         <div class="form-group row" id="text">
-          <div class="col-xs-2 col-xs-offset-5">
+          <div class="col-xs-2 col-xs-offset-5 user-edit">
             <%= f.label :目標体重 %><br>
             <%= f.number_field :goal_weight, min: 0, class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group row">
-          <div class="col-xs-2 col-xs-offset-5">
+          <div class="col-xs-2 col-xs-offset-5 user-edit">
             <%= f.label :公開ステータス %><br>
             <%= f.label :公開ステータス, :公開 %>
             <%= f.radio_button :public_status, "公開", checked: true %>
@@ -61,14 +61,14 @@
         </div>
         
         <div class="form-group row">
-          <div class="col-xs-4 col-xs-offset-4">
+          <div class="col-xs-4 col-xs-offset-4 user-edit">
             <%= f.label :メールアドレス %><br />
             <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
           </div>
         </div>
 
         <div class="form-group row">
-          <div class="col-xs-4 col-xs-offset-4">
+          <div class="col-xs-4 col-xs-offset-4 user-edit">
             <%= f.label :トピックス配信設定 %><br>
             <%= f.label :トピックス配信設定, :メールを受け取る %>
             <%= f.radio_button :mail_permission, "true" %>
@@ -78,14 +78,14 @@
         </div>
 
         <div class="form-group row">
-          <div class="col-xs-4 col-xs-offset-4">
+          <div class="col-xs-4 col-xs-offset-4 user-edit">
             <%= f.label :自己紹介 %><br />
             <%= f.text_area :introduction, autocomplete: "introduction", class: "form-control" %>
           </div>
         </div>
 
-        <div class="actions">
-          <%= f.submit "変更を保存する", class: "btn btn-success" %>
+        <div>
+          <%= f.submit "保存する", class: "btn btn-success" %>
           <%= link_to "戻る", 'javascript:history.back()', class: "btn btn-info" %>
         </div>
 
