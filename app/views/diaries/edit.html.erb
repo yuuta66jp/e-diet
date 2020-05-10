@@ -8,7 +8,7 @@
         <h1 class="diary">日記編集画面</h1>
         <div class="row">
 
-          <div class="col-xs-5 col-xs-offset-1 title">
+          <div class="col-xs-5 col-xs-offset-1 title diary-show">
             <h3>食事記録</h3>
             <table class="table">
               <thead>
@@ -16,7 +16,6 @@
                   <th>タイミング</th>
                   <th>イメージ</th>
                   <th>タイトル</th>
-                  <th></th>
                   <th></th>
                 </tr>
               </thead>
@@ -27,7 +26,6 @@
                   <td><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded", fallback: "no_image1.jpg" %></td>
                   <td><%= meal.title %></td>
                   <td><%= link_to "編集", edit_meal_record_path(meal), class: "btn btn-success" %></td>
-                  <td><%= link_to "削除", meal_record_path(meal), method: :delete, class: "btn btn-danger" %></td>
                 </tr>
                 <% end %>
               </tbody>
@@ -39,26 +37,26 @@
 
             <%= f.fields_for @body_weight do |weight| %>
             <div class="form-group row">
-              <div class="col-xs-4">
+              <div class="col-xs-4 diary-form-1">
                 <%= weight.label :体重 %><br>
                 <%= weight.number_field :weight_record, min: 0, autocomplete: "weight_record", class: "form-control" %>
               </div>
             </div>
             <% end %>
             <div class="form-group row">
-              <div class="col-xs-4">
+              <div class="col-xs-4 diary-form-1">
                 <%= f.label :活動量 %><br>
                 <%= f.select :activity_status, Diary.activity_statuses.keys.to_a, prompt: "選択してください", autocomplete: "activity_status", class: "form-control" %>
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-xs-7">
+              <div class="col-xs-7 diary-form-2">
                 <%= f.label :メモ %><br>
                 <%= f.text_area :remark, autocomplete: "remark", class: "form-control" %>
               </div>
             </div>
             <div class="form-group row">
-              <div class="col-xs-7">
+              <div class="col-xs-7 diary-form-2">
                 <%= f.label :タグ %><br>
                 <%= f.text_field :tag_list, value: @diary.tag_list.join(','), class: "form-control" %>
               </div>
