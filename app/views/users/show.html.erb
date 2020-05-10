@@ -45,10 +45,10 @@
     <div class="row">
       <div class="col-xs-8 col-xs-offset-2 user-show">
         <h3>詳細情報</h3>
-        <table class="table ">
+        <table class="table user-show">
           <tbody>
             <tr>
-              <th>ユーザー名</th>
+              <th class="user-th">ユーザー名</th>
               <td><%= @user.name %>（日記投稿数：<%= link_to @user.diaries.count, diaries_path(index: "user", id: @user.id) %>件）</td>
             </tr>
             <tr>
