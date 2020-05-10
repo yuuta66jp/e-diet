@@ -158,6 +158,8 @@ ul.footer-menu a {
 .edit_diary {
   text-align: left;
   padding-top: 50px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .diary {
@@ -251,6 +253,10 @@ em {
   font-weight: bold;
 }
 
+.action {
+  margin-top: 30px;
+}
+
 @media screen and (max-width:425px) {
   .navbar-fixed-top {
     position: absolute;
@@ -294,8 +300,6 @@ em {
     line-height: 50px;
     padding-right: 25px;
   }
-
-
 
   body.menu-open #cover {
     display: block;
@@ -372,7 +376,21 @@ em {
     margin: 0;
     width: 100%;
   }
+  
+  .edit_diary {
+    margin: 0;
+    width: 100%;
+    padding: 0 30px;
+  }
 
+  .action {
+    text-align: center;
+  }
+
+  .comment {
+    margin: 0;
+    width: 100%;
+  }
 
 
 }

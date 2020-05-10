@@ -38,14 +38,16 @@
               <h4><%= render "diaries/tag_list", tag_list: @diary.tag_list %></h4>
             <% if user_signed_in? %>
               <% if @diary.user.id == current_user.id %>
-                <%= link_to "編集", edit_diary_path(@diary.id), class: "btn btn-success" %>
-                <%= link_to "削除", diary_path(@diary), method: :delete, class: "btn btn-danger" %>
+                <div class="action">
+                  <%= link_to "編集", edit_diary_path(@diary.id), class: "btn btn-success" %>
+                  <%= link_to "削除", diary_path(@diary), method: :delete, class: "btn btn-danger" %>
+                </div>
               <% end %>
             <% end %>
           </div>
         </div>
         <div class="row">
-          <div class="col-xs-6 col-xs-offset-3 title">
+          <div class="col-xs-6 col-xs-offset-3 title comment">
             <h3>コメント</h3>
             <table id= "comments_area" class="table">
               <!-- 投稿されたコメント一覧を表示するためのrender(部分テンプレート) -->
@@ -57,7 +59,9 @@
             <% end %>
           </div>
         </div>
-        <%= link_to "戻る", 'javascript:history.back()', class: "btn btn-info btn-sm" %>
+        <div class="action">
+          <%= link_to "戻る", 'javascript:history.back()', class: "btn btn-info btn-sm" %>
+        </div>
       </div>
     </div>
   </div>
