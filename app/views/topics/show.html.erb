@@ -2,10 +2,10 @@
   <div class="form edit">
     <div class="row">
       <div class="col-xs-12">
-        <div class="col-xs-4 col-xs-offset-2">
+        <div class="col-xs-4 col-xs-offset-2 center topic-show">
           <%= attachment_image_tag @topic, :topic_image, size: "200x200", class: "img-rounded", fallback: "no_image1.jpg" %>
         </div>
-        <div class="col-xs-4 title">
+        <div class="col-xs-4 title topic-text">
           <h3><%= @topic.title %></h3>
           <h4>内容</h4>
             <p><%= simple_format(@topic.body) %></p>

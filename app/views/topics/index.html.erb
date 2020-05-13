@@ -13,18 +13,18 @@
         <tbody>
           <% @topics.each do |topic| %>
           <tr>
-            <th>
+            <th class="topic-center">
               <%= link_to topic_path(topic) do %>
-              <%= attachment_image_tag topic, :topic_image, size: "120x120", class: "img-rounded", fallback: "no_image.jpg" %>
+              <%= attachment_image_tag topic, :topic_image, size: "120x120", class: "img-rounded topic-image", fallback: "no_image.jpg" %>
               <% end %>
             </th>
-            <th><%= topic.created_at.strftime('%Y/%m/%d') %></th>
-            <th>
+            <th class="topic-center time"><%= topic.created_at.strftime('%Y/%m/%d') %></th>
+            <th class="topic-center topic-titile">
               <%= link_to topic_path(topic) do %>
               <%= topic.title %>
               <% end %>
             </th>
-            <th><%= topic.genre.name %></th>
+            <th class="topic-center"><%= topic.genre.name %></th>
           </tr>
           <% end %>
         </tbody>
