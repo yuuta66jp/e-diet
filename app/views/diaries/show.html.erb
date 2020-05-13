@@ -18,17 +18,17 @@
               <tbody>
                 <% @meal_records.each do |meal| %>
                 <tr>
-                  <td><%= meal.intake_status %></td>
-                  <td><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded", fallback: "no_image1.jpg" %></td>
-                  <td><%= meal.title %></td>
-                  <td><%= link_to "詳細", meal_record_path(meal), class: "btn btn-success" %></td>
+                  <td class="meal-text"><%= meal.intake_status %></td>
+                  <td class="meal-text"><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded meal-image", fallback: "no_image1.jpg" %></td>
+                  <td class="meal-text"><%= meal.title %></td>
+                  <td class="meal-text"><%= link_to "詳細", meal_record_path(meal), class: "btn btn-success" %></td>
                 </tr>
                 <% end %>
               </tbody>
             </table>
 
           </div>
-          <div class="col-xs-5 col-xs-offset-1 edit_diary">
+          <div class="col-xs-5 col-xs-offset-1 edit_diary text-left">
             <h3>メモ</h3>
               <p><%= simple_format(@diary.remark) %></p>
             <h3>活動量</h3>

@@ -9,11 +9,11 @@
         <!-- hidden_fieldにてdiary_idを渡す -->
         <%= f.hidden_field :diary_id, value: @diary.id %>
         <div class="form-group row">
-          <div class="col-xs-4 col-xs-offset-2">
+          <div class="col-xs-4 col-xs-offset-2 diary-show">
             <%= attachment_image_tag @meal_record, :meal_image, size: "100x100", class: "img-rounded", fallback: "no_image1.jpg" %>
             <%= f.attachment_field :meal_image %>
           </div>
-          <div class="col-xs-4 title">
+          <div class="col-xs-4 title diary-show">
             <%= f.label :食事のタイトル %><br>
             <%= f.text_field :title, autofocus:true, autocomplete: "title", class: "form-control"  %>
             <div class="form-group row">
@@ -28,7 +28,9 @@
                 <%= f.select :intake_status, MealRecord.intake_statuses.keys.to_a, prompt: "選択してください", class: "form-control"  %>
               </div>
             </div>
-            <%= f.submit "追加", class: "btn btn-success" %>
+            <div class="action">
+              <%= f.submit "追加", class: "btn btn-success" %>
+            </div>
           </div>
         </div>
         <% end %>
