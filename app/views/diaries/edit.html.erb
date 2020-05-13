@@ -24,7 +24,7 @@
                 <tr>
                   <td class="meal-text"><%= meal.intake_status %></td>
                   <td class="meal-text"><%= attachment_image_tag meal, :meal_image, size: "70x70", class: "img-rounded meal-image", fallback: "no_image1.jpg" %></td>
-                  <td class="meal-text"><%= meal.title %></td>
+                  <td class="meal-text topic-titile"><%= meal.title %></td>
                   <td class="meal-text"><%= link_to "編集", edit_meal_record_path(meal), class: "btn btn-success" %></td>
                 </tr>
                 <% end %>
